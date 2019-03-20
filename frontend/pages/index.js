@@ -5,7 +5,6 @@ import React from "react";
 const Home = props => {
   return (
     <div>
-      {/* <Items page={parseFloat(props.query.page) || 1} /> */}
       <p>This is the main page</p>
     </div>
   );
