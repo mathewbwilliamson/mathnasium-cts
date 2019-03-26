@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
-const Me = props => {
+const NewLead = props => {
   return (
     <div>
-      <p>Me!!!</p>
+      <p>NewLead!!!</p>
     </div>
   );
 };
 
-export default Me;
+export default NewLead;

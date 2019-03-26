@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
-const Me = props => {
+const Today = props => {
   return (
     <div>
-      <p>Me!!!</p>
+      <p>This is the TODAY PAGE!!!</p>
     </div>
   );
 };
 
-export default Me;
+export default Today;
