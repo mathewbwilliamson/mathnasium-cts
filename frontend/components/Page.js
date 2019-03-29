@@ -7,9 +7,16 @@ const theme = {
   //theme is an object that contains all the variables for the entire project
   red: "#FF0000",
   black: "#393939",
+  maingreen: "#75CA46",
+  lightgreen: "#ACDBCE",
+  brightgreen: "#67C352",
+  darkgreen: "#6AC450",
   grey: "#3A3A3A",
-  lightgrey: "#E1E1E1",
-  offWhite: "#EDEDED",
+  lightgrey: "#F1F1F1",
+  highlightgrey: "#E5E5E5",
+  purple: "#806DCB",
+  darkgrey: "#363F41",
+  offwhite: "#FFFFFF",
   maxWidth: "1000px",
   bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
 };

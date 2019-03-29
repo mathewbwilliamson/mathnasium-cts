@@ -14,6 +14,7 @@ const NavStyles = styled.ul`
     align-items: center;
     width: 150px;
   }
+
   a,
   button {
     padding: 1rem 3rem;
@@ -60,10 +61,10 @@ const NavStyles = styled.ul`
         width: calc(100% - 60px);
       }
       @media (max-width: 700px) {
-        width: calc(100% - 10px);
+        /* [MATT] TODO: Fix this on mobile. It looks shitty! */
+        /* width: calc(100% - 10px); */
       }
     }
-
     
   }
   @media (max-width: 1300px) {
