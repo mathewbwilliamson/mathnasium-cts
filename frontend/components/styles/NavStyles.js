@@ -14,7 +14,7 @@ const NavStyles = styled.ul`
     align-items: center;
     width: 150px;
   }
-
+/* TODO: Figure out a way to get the color transitions to load better so that there is not a weird line down the middle. Make a div behind all the other divs */
   a,
   button {
     padding: 1rem 3rem;
@@ -68,7 +68,7 @@ const NavStyles = styled.ul`
     
   }
   @media (max-width: 1300px) {
-    border-top: 1px solid ${props => props.theme.lightgrey};
+    /* border-top: 1px solid ${props => props.theme.lightgrey}; */
     width: 100%;
     justify-content: center;
     font-size: 1.5rem;

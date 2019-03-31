@@ -10,7 +10,7 @@ const theme = {
   maingreen: "#75CA46",
   lightgreen: "#ACDBCE",
   brightgreen: "#67C352",
-  darkgreen: "#6AC450",
+  darkgreen: "#31AE72",
   grey: "#3A3A3A",
   lightgrey: "#F1F1F1",
   highlightgrey: "#E5E5E5",
@@ -31,6 +31,13 @@ const Inner = styled.div`
   background-color: white;
   margin: 0 auto;
   padding: 2rem;
+  width: 80vw;
+  border: 2px solid ${props => props.theme.lightgrey};
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
+  z-index: 2;
+  position: relative;
+  top: -130px;
 `;
 // Font size is 10px for the basic size so rem math is easy. Default is 16.
 injectGlobal`

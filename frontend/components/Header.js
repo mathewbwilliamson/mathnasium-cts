@@ -20,7 +20,7 @@ Router.onRouteChangeError = () => {
 
 const StyledHeader = styled.header`
   .bar {
-    border-bottom: 5px solid ${props => props.theme.black};
+    /* border-bottom: 5px solid ${props => props.theme.black}; */
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
@@ -30,7 +30,7 @@ const StyledHeader = styled.header`
     background-image: linear-gradient(
       65deg,
       ${props => props.theme.darkgreen},
-      ${props => props.theme.lightgreen}
+      ${props => props.theme.maingreen}
     );
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
@@ -46,7 +46,7 @@ const StyledHeader = styled.header`
     background-image: linear-gradient(
       65deg,
       ${props => props.theme.darkgreen},
-      ${props => props.theme.lightgreen}
+      ${props => props.theme.maingreen}
     );
   }
   ul a {
@@ -65,6 +65,14 @@ const StyledHeader = styled.header`
   }
   .logoContainer {
     margin-left: 10px;
+  }
+  .postHeader {
+    background-image: linear-gradient(
+      65deg,
+      ${props => props.theme.darkgreen},
+      ${props => props.theme.maingreen}
+    );
+    height: 20vh;
   }
 `;
 
@@ -93,6 +101,7 @@ const Header = () => {
           <Nav />
         </div>
       </div>
+      <div className="postHeader" />
     </StyledHeader>
   );
 };
