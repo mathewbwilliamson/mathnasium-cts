@@ -14,7 +14,6 @@ const NavStyles = styled.ul`
     align-items: center;
     width: 150px;
   }
-/* TODO: Figure out a way to get the color transitions to load better so that there is not a weird line down the middle. Make a div behind all the other divs */
   a,
   button {
     padding: 1rem 3rem;

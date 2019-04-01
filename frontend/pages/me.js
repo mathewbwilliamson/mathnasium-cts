@@ -1,11 +1,14 @@
 import React from "react";
 import Link from "next/link";
+import BasicPageStyles from "../components/styles/BasicPageStyles";
 
 const Me = props => {
   return (
-    <div>
-      <p>Me!!!</p>
-    </div>
+    <BasicPageStyles>
+      <div className="container">
+        <p>Me!!!</p>
+      </div>
+    </BasicPageStyles>
   );
 };
 

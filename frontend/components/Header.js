@@ -19,6 +19,11 @@ Router.onRouteChangeError = () => {
 };
 
 const StyledHeader = styled.header`
+  background-image: linear-gradient(
+    65deg,
+    ${props => props.theme.darkgreen},
+    ${props => props.theme.maingreen}
+  );
   .bar {
     /* border-bottom: 5px solid ${props => props.theme.black}; */
     display: grid;
@@ -26,12 +31,6 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     align-items: stretch;
     color: ${props => props.theme.lightgrey};
-    background-color: ${props => props.theme.darkgrey};
-    background-image: linear-gradient(
-      65deg,
-      ${props => props.theme.darkgreen},
-      ${props => props.theme.maingreen}
-    );
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
       justify-content: center;
@@ -41,13 +40,6 @@ const StyledHeader = styled.header`
     display: grid;
     grid-template-columns: 1fr auto;
     border-bottom: 5px solid ${props => props.theme.lightgrey};
-  }
-  ul {
-    background-image: linear-gradient(
-      65deg,
-      ${props => props.theme.darkgreen},
-      ${props => props.theme.maingreen}
-    );
   }
   ul a {
     color: ${props => props.theme.offwhite};
@@ -67,11 +59,6 @@ const StyledHeader = styled.header`
     margin-left: 10px;
   }
   .postHeader {
-    background-image: linear-gradient(
-      65deg,
-      ${props => props.theme.darkgreen},
-      ${props => props.theme.maingreen}
-    );
     height: 20vh;
   }
 `;

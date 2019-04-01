@@ -17,6 +17,7 @@ const theme = {
   purple: "#806DCB",
   darkgrey: "#363F41",
   offwhite: "#FFFFFF",
+  white: "#FFFFFF",
   maxWidth: "1000px",
   bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
 };
@@ -28,13 +29,13 @@ const StyledPage = styled.div`
 
 const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
-  background-color: white;
+  /* background-color: white; */
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   width: 80vw;
-  border: 2px solid ${props => props.theme.lightgrey};
-  border-radius: 4px;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13);
+  /* border: 2px solid ${props => props.theme.lightgrey}; */
+  /* border-radius: 4px; */
+  /* box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.13); */
   z-index: 2;
   position: relative;
   top: -130px;
