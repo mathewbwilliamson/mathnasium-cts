@@ -43,7 +43,7 @@ const NavStyles = styled.ul`
     }
     &:after {
       height: 2px;
-      background: red;
+      background: ${props => props.theme.purple};
       content: "";
       width: 0;
       position: absolute;
@@ -52,18 +52,24 @@ const NavStyles = styled.ul`
       transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
       left: 50%;
       margin-top: 2rem;
+      @media (max-width: 700px) {
+        /* [MATT] TODO: Fix this on mobile. It looks shitty! */
+        margin-top: 1.3rem;
+      }
     }
     &:hover,
     &:focus {
       outline: none;
       &:after {
         width: calc(100% - 60px);
+        @media (max-width: 700px) {
+          width: calc(100% - 20px);
+        }
       }
-      @media (max-width: 700px) {
-        /* [MATT] TODO: Fix this on mobile. It looks shitty! */
-        /* width: calc(100% - 10px); */
-      }
+      
     }
+  }
+  @media (max-width: 700px) {
     
   }
   @media (max-width: 1300px) {
