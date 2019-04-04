@@ -1,3 +1,6 @@
+// Procedure to Add a Mutation or Query
+// 1. 
+
 const Mutation = {
     async createItem(parent, args, ctx, info) {
         // TODO Check if they are logged in
