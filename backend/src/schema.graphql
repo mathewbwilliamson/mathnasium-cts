@@ -1,0 +1,19 @@
+# The next line is not really commented out. It's prisma's way of creating an import.
+# import * from './generated/prisma.graphql'
+
+
+
+type Mutation {
+  # Note that Lead is defined in prisma.graphql!
+  createLead(
+    firstName: String!,
+    lastName: String, 
+    mobilePhoneNumber: Int!,
+    homePhoneNumber: Int,
+    emailAddress: String,
+    notes: String): Lead!
+}
+
+type Query {
+  leads: [Lead]!
+}

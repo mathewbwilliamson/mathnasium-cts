@@ -1,9 +1,46 @@
-# Procedure to add to the datamodel:
-# @stuff are called directives
-# Add something here
-# npm run deploy
-
 type User {
   id: ID! @unique
   name: String!
+  email: String!
+}
+
+type Lead {
+  id: ID! @unique
+  firstName: String!
+  lastName: String
+  mobilePhoneNumber: Int!
+  homePhoneNumber: Int
+  emailAddress: String
+  notes: String
+  # centerLocation: String!
+  # user: User!
+  # createdDate: DateTime!
+  # updatedAt: DateTime!
+  # events: [Events]
+}
+
+type LeadChild {
+  id: ID! @unique
+  firstName: String!
+  lastName: String
+  gradeOfChild: Int
+  notes: String
+  conversionDate: DateTime
+  # centerLocation: String!
+  # user: User!
+}
+
+type Events {
+  id: ID! @unique
+  type: String!
+  dueDate: DateTime
+  dueTime: DateTime
+  notes: String
+  message: String
+  messageTitle: String
+  messageShortened: String
+  # createdDate: DateTime
+  # updatedAt: DateTime
+  sentDate: DateTime
+  sentTime: DateTime
 }
