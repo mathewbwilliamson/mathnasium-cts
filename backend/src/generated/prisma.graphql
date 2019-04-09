@@ -1,7 +1,7 @@
 # source: https://us1.prisma.sh/matt-b5f417/mathnasiumCTSmain/dev
-# timestamp: Mon Apr 08 2019 08:52:34 GMT-0400 (EDT)
+# timestamp: Tue Apr 09 2019 08:27:09 GMT-0400 (EDT)
 
-type AggregateEvents {
+type AggregateEvent {
   count: Int!
 }
 
@@ -24,7 +24,7 @@ type BatchPayload {
 
 scalar DateTime
 
-type Events implements Node {
+type Event implements Node {
   id: ID!
   type: String!
   dueDate: DateTime
@@ -38,16 +38,16 @@ type Events implements Node {
 }
 
 """A connection to a list of items."""
-type EventsConnection {
+type EventConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [EventsEdge]!
-  aggregate: AggregateEvents!
+  edges: [EventEdge]!
+  aggregate: AggregateEvent!
 }
 
-input EventsCreateInput {
+input EventCreateInput {
   id: ID
   type: String!
   dueDate: DateTime
@@ -60,21 +60,16 @@ input EventsCreateInput {
   sentTime: DateTime
 }
 
-input EventsCreateManyInput {
-  create: [EventsCreateInput!]
-  connect: [EventsWhereUniqueInput!]
-}
-
 """An edge in a connection."""
-type EventsEdge {
+type EventEdge {
   """The item at the end of the edge."""
-  node: Events!
+  node: Event!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum EventsOrderByInput {
+enum EventOrderByInput {
   id_ASC
   id_DESC
   type_ASC
@@ -101,7 +96,7 @@ enum EventsOrderByInput {
   createdAt_DESC
 }
 
-type EventsPreviousValues {
+type EventPreviousValues {
   id: ID!
   type: String!
   dueDate: DateTime
@@ -114,361 +109,22 @@ type EventsPreviousValues {
   sentTime: DateTime
 }
 
-input EventsScalarWhereInput {
-  """Logical AND on all given filters."""
-  AND: [EventsScalarWhereInput!]
-
-  """Logical OR on all given filters."""
-  OR: [EventsScalarWhereInput!]
-
-  """Logical NOT on all given filters combined by AND."""
-  NOT: [EventsScalarWhereInput!]
-  id: ID
-
-  """All values that are not equal to given value."""
-  id_not: ID
-
-  """All values that are contained in given list."""
-  id_in: [ID!]
-
-  """All values that are not contained in given list."""
-  id_not_in: [ID!]
-
-  """All values less than the given value."""
-  id_lt: ID
-
-  """All values less than or equal the given value."""
-  id_lte: ID
-
-  """All values greater than the given value."""
-  id_gt: ID
-
-  """All values greater than or equal the given value."""
-  id_gte: ID
-
-  """All values containing the given string."""
-  id_contains: ID
-
-  """All values not containing the given string."""
-  id_not_contains: ID
-
-  """All values starting with the given string."""
-  id_starts_with: ID
-
-  """All values not starting with the given string."""
-  id_not_starts_with: ID
-
-  """All values ending with the given string."""
-  id_ends_with: ID
-
-  """All values not ending with the given string."""
-  id_not_ends_with: ID
-  type: String
-
-  """All values that are not equal to given value."""
-  type_not: String
-
-  """All values that are contained in given list."""
-  type_in: [String!]
-
-  """All values that are not contained in given list."""
-  type_not_in: [String!]
-
-  """All values less than the given value."""
-  type_lt: String
-
-  """All values less than or equal the given value."""
-  type_lte: String
-
-  """All values greater than the given value."""
-  type_gt: String
-
-  """All values greater than or equal the given value."""
-  type_gte: String
-
-  """All values containing the given string."""
-  type_contains: String
-
-  """All values not containing the given string."""
-  type_not_contains: String
-
-  """All values starting with the given string."""
-  type_starts_with: String
-
-  """All values not starting with the given string."""
-  type_not_starts_with: String
-
-  """All values ending with the given string."""
-  type_ends_with: String
-
-  """All values not ending with the given string."""
-  type_not_ends_with: String
-  dueDate: DateTime
-
-  """All values that are not equal to given value."""
-  dueDate_not: DateTime
-
-  """All values that are contained in given list."""
-  dueDate_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  dueDate_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  dueDate_lt: DateTime
-
-  """All values less than or equal the given value."""
-  dueDate_lte: DateTime
-
-  """All values greater than the given value."""
-  dueDate_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  dueDate_gte: DateTime
-  dueTime: DateTime
-
-  """All values that are not equal to given value."""
-  dueTime_not: DateTime
-
-  """All values that are contained in given list."""
-  dueTime_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  dueTime_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  dueTime_lt: DateTime
-
-  """All values less than or equal the given value."""
-  dueTime_lte: DateTime
-
-  """All values greater than the given value."""
-  dueTime_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  dueTime_gte: DateTime
-  notes: String
-
-  """All values that are not equal to given value."""
-  notes_not: String
-
-  """All values that are contained in given list."""
-  notes_in: [String!]
-
-  """All values that are not contained in given list."""
-  notes_not_in: [String!]
-
-  """All values less than the given value."""
-  notes_lt: String
-
-  """All values less than or equal the given value."""
-  notes_lte: String
-
-  """All values greater than the given value."""
-  notes_gt: String
-
-  """All values greater than or equal the given value."""
-  notes_gte: String
-
-  """All values containing the given string."""
-  notes_contains: String
-
-  """All values not containing the given string."""
-  notes_not_contains: String
-
-  """All values starting with the given string."""
-  notes_starts_with: String
-
-  """All values not starting with the given string."""
-  notes_not_starts_with: String
-
-  """All values ending with the given string."""
-  notes_ends_with: String
-
-  """All values not ending with the given string."""
-  notes_not_ends_with: String
-  message: String
-
-  """All values that are not equal to given value."""
-  message_not: String
-
-  """All values that are contained in given list."""
-  message_in: [String!]
-
-  """All values that are not contained in given list."""
-  message_not_in: [String!]
-
-  """All values less than the given value."""
-  message_lt: String
-
-  """All values less than or equal the given value."""
-  message_lte: String
-
-  """All values greater than the given value."""
-  message_gt: String
-
-  """All values greater than or equal the given value."""
-  message_gte: String
-
-  """All values containing the given string."""
-  message_contains: String
-
-  """All values not containing the given string."""
-  message_not_contains: String
-
-  """All values starting with the given string."""
-  message_starts_with: String
-
-  """All values not starting with the given string."""
-  message_not_starts_with: String
-
-  """All values ending with the given string."""
-  message_ends_with: String
-
-  """All values not ending with the given string."""
-  message_not_ends_with: String
-  messageTitle: String
-
-  """All values that are not equal to given value."""
-  messageTitle_not: String
-
-  """All values that are contained in given list."""
-  messageTitle_in: [String!]
-
-  """All values that are not contained in given list."""
-  messageTitle_not_in: [String!]
-
-  """All values less than the given value."""
-  messageTitle_lt: String
-
-  """All values less than or equal the given value."""
-  messageTitle_lte: String
-
-  """All values greater than the given value."""
-  messageTitle_gt: String
-
-  """All values greater than or equal the given value."""
-  messageTitle_gte: String
-
-  """All values containing the given string."""
-  messageTitle_contains: String
-
-  """All values not containing the given string."""
-  messageTitle_not_contains: String
-
-  """All values starting with the given string."""
-  messageTitle_starts_with: String
-
-  """All values not starting with the given string."""
-  messageTitle_not_starts_with: String
-
-  """All values ending with the given string."""
-  messageTitle_ends_with: String
-
-  """All values not ending with the given string."""
-  messageTitle_not_ends_with: String
-  messageShortened: String
-
-  """All values that are not equal to given value."""
-  messageShortened_not: String
-
-  """All values that are contained in given list."""
-  messageShortened_in: [String!]
-
-  """All values that are not contained in given list."""
-  messageShortened_not_in: [String!]
-
-  """All values less than the given value."""
-  messageShortened_lt: String
-
-  """All values less than or equal the given value."""
-  messageShortened_lte: String
-
-  """All values greater than the given value."""
-  messageShortened_gt: String
-
-  """All values greater than or equal the given value."""
-  messageShortened_gte: String
-
-  """All values containing the given string."""
-  messageShortened_contains: String
-
-  """All values not containing the given string."""
-  messageShortened_not_contains: String
-
-  """All values starting with the given string."""
-  messageShortened_starts_with: String
-
-  """All values not starting with the given string."""
-  messageShortened_not_starts_with: String
-
-  """All values ending with the given string."""
-  messageShortened_ends_with: String
-
-  """All values not ending with the given string."""
-  messageShortened_not_ends_with: String
-  sentDate: DateTime
-
-  """All values that are not equal to given value."""
-  sentDate_not: DateTime
-
-  """All values that are contained in given list."""
-  sentDate_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  sentDate_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  sentDate_lt: DateTime
-
-  """All values less than or equal the given value."""
-  sentDate_lte: DateTime
-
-  """All values greater than the given value."""
-  sentDate_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  sentDate_gte: DateTime
-  sentTime: DateTime
-
-  """All values that are not equal to given value."""
-  sentTime_not: DateTime
-
-  """All values that are contained in given list."""
-  sentTime_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  sentTime_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  sentTime_lt: DateTime
-
-  """All values less than or equal the given value."""
-  sentTime_lte: DateTime
-
-  """All values greater than the given value."""
-  sentTime_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  sentTime_gte: DateTime
-}
-
-type EventsSubscriptionPayload {
+type EventSubscriptionPayload {
   mutation: MutationType!
-  node: Events
+  node: Event
   updatedFields: [String!]
-  previousValues: EventsPreviousValues
+  previousValues: EventPreviousValues
 }
 
-input EventsSubscriptionWhereInput {
+input EventSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [EventsSubscriptionWhereInput!]
+  AND: [EventSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [EventsSubscriptionWhereInput!]
+  OR: [EventSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [EventsSubscriptionWhereInput!]
+  NOT: [EventSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -489,10 +145,10 @@ input EventsSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: EventsWhereInput
+  node: EventWhereInput
 }
 
-input EventsUpdateDataInput {
+input EventUpdateInput {
   type: String
   dueDate: DateTime
   dueTime: DateTime
@@ -504,7 +160,7 @@ input EventsUpdateDataInput {
   sentTime: DateTime
 }
 
-input EventsUpdateInput {
+input EventUpdateManyMutationInput {
   type: String
   dueDate: DateTime
   dueTime: DateTime
@@ -516,67 +172,15 @@ input EventsUpdateInput {
   sentTime: DateTime
 }
 
-input EventsUpdateManyDataInput {
-  type: String
-  dueDate: DateTime
-  dueTime: DateTime
-  notes: String
-  message: String
-  messageTitle: String
-  messageShortened: String
-  sentDate: DateTime
-  sentTime: DateTime
-}
-
-input EventsUpdateManyInput {
-  create: [EventsCreateInput!]
-  connect: [EventsWhereUniqueInput!]
-  set: [EventsWhereUniqueInput!]
-  disconnect: [EventsWhereUniqueInput!]
-  delete: [EventsWhereUniqueInput!]
-  update: [EventsUpdateWithWhereUniqueNestedInput!]
-  updateMany: [EventsUpdateManyWithWhereNestedInput!]
-  deleteMany: [EventsScalarWhereInput!]
-  upsert: [EventsUpsertWithWhereUniqueNestedInput!]
-}
-
-input EventsUpdateManyMutationInput {
-  type: String
-  dueDate: DateTime
-  dueTime: DateTime
-  notes: String
-  message: String
-  messageTitle: String
-  messageShortened: String
-  sentDate: DateTime
-  sentTime: DateTime
-}
-
-input EventsUpdateManyWithWhereNestedInput {
-  where: EventsScalarWhereInput!
-  data: EventsUpdateManyDataInput!
-}
-
-input EventsUpdateWithWhereUniqueNestedInput {
-  where: EventsWhereUniqueInput!
-  data: EventsUpdateDataInput!
-}
-
-input EventsUpsertWithWhereUniqueNestedInput {
-  where: EventsWhereUniqueInput!
-  update: EventsUpdateDataInput!
-  create: EventsCreateInput!
-}
-
-input EventsWhereInput {
+input EventWhereInput {
   """Logical AND on all given filters."""
-  AND: [EventsWhereInput!]
+  AND: [EventWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [EventsWhereInput!]
+  OR: [EventWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [EventsWhereInput!]
+  NOT: [EventWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -907,7 +511,7 @@ input EventsWhereInput {
   sentTime_gte: DateTime
 }
 
-input EventsWhereUniqueInput {
+input EventWhereUniqueInput {
   id: ID
 }
 
@@ -915,11 +519,10 @@ type Lead implements Node {
   id: ID!
   firstName: String!
   lastName: String
-  mobilePhoneNumber: Int!
-  homePhoneNumber: Int
+  mobilePhoneNumber: String!
+  homePhoneNumber: String
   emailAddress: String
   notes: String
-  events(where: EventsWhereInput, orderBy: EventsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Events!]
 }
 
 type LeadChild implements Node {
@@ -1275,11 +878,10 @@ input LeadCreateInput {
   id: ID
   firstName: String!
   lastName: String
-  mobilePhoneNumber: Int!
-  homePhoneNumber: Int
+  mobilePhoneNumber: String!
+  homePhoneNumber: String
   emailAddress: String
   notes: String
-  events: EventsCreateManyInput
 }
 
 """An edge in a connection."""
@@ -1316,8 +918,8 @@ type LeadPreviousValues {
   id: ID!
   firstName: String!
   lastName: String
-  mobilePhoneNumber: Int!
-  homePhoneNumber: Int
+  mobilePhoneNumber: String!
+  homePhoneNumber: String
   emailAddress: String
   notes: String
 }
@@ -1364,18 +966,17 @@ input LeadSubscriptionWhereInput {
 input LeadUpdateInput {
   firstName: String
   lastName: String
-  mobilePhoneNumber: Int
-  homePhoneNumber: Int
+  mobilePhoneNumber: String
+  homePhoneNumber: String
   emailAddress: String
   notes: String
-  events: EventsUpdateManyInput
 }
 
 input LeadUpdateManyMutationInput {
   firstName: String
   lastName: String
-  mobilePhoneNumber: Int
-  homePhoneNumber: Int
+  mobilePhoneNumber: String
+  homePhoneNumber: String
   emailAddress: String
   notes: String
 }
@@ -1509,50 +1110,86 @@ input LeadWhereInput {
 
   """All values not ending with the given string."""
   lastName_not_ends_with: String
-  mobilePhoneNumber: Int
+  mobilePhoneNumber: String
 
   """All values that are not equal to given value."""
-  mobilePhoneNumber_not: Int
+  mobilePhoneNumber_not: String
 
   """All values that are contained in given list."""
-  mobilePhoneNumber_in: [Int!]
+  mobilePhoneNumber_in: [String!]
 
   """All values that are not contained in given list."""
-  mobilePhoneNumber_not_in: [Int!]
+  mobilePhoneNumber_not_in: [String!]
 
   """All values less than the given value."""
-  mobilePhoneNumber_lt: Int
+  mobilePhoneNumber_lt: String
 
   """All values less than or equal the given value."""
-  mobilePhoneNumber_lte: Int
+  mobilePhoneNumber_lte: String
 
   """All values greater than the given value."""
-  mobilePhoneNumber_gt: Int
+  mobilePhoneNumber_gt: String
 
   """All values greater than or equal the given value."""
-  mobilePhoneNumber_gte: Int
-  homePhoneNumber: Int
+  mobilePhoneNumber_gte: String
+
+  """All values containing the given string."""
+  mobilePhoneNumber_contains: String
+
+  """All values not containing the given string."""
+  mobilePhoneNumber_not_contains: String
+
+  """All values starting with the given string."""
+  mobilePhoneNumber_starts_with: String
+
+  """All values not starting with the given string."""
+  mobilePhoneNumber_not_starts_with: String
+
+  """All values ending with the given string."""
+  mobilePhoneNumber_ends_with: String
+
+  """All values not ending with the given string."""
+  mobilePhoneNumber_not_ends_with: String
+  homePhoneNumber: String
 
   """All values that are not equal to given value."""
-  homePhoneNumber_not: Int
+  homePhoneNumber_not: String
 
   """All values that are contained in given list."""
-  homePhoneNumber_in: [Int!]
+  homePhoneNumber_in: [String!]
 
   """All values that are not contained in given list."""
-  homePhoneNumber_not_in: [Int!]
+  homePhoneNumber_not_in: [String!]
 
   """All values less than the given value."""
-  homePhoneNumber_lt: Int
+  homePhoneNumber_lt: String
 
   """All values less than or equal the given value."""
-  homePhoneNumber_lte: Int
+  homePhoneNumber_lte: String
 
   """All values greater than the given value."""
-  homePhoneNumber_gt: Int
+  homePhoneNumber_gt: String
 
   """All values greater than or equal the given value."""
-  homePhoneNumber_gte: Int
+  homePhoneNumber_gte: String
+
+  """All values containing the given string."""
+  homePhoneNumber_contains: String
+
+  """All values not containing the given string."""
+  homePhoneNumber_not_contains: String
+
+  """All values starting with the given string."""
+  homePhoneNumber_starts_with: String
+
+  """All values not starting with the given string."""
+  homePhoneNumber_not_starts_with: String
+
+  """All values ending with the given string."""
+  homePhoneNumber_ends_with: String
+
+  """All values not ending with the given string."""
+  homePhoneNumber_not_ends_with: String
   emailAddress: String
 
   """All values that are not equal to given value."""
@@ -1633,9 +1270,6 @@ input LeadWhereInput {
 
   """All values not ending with the given string."""
   notes_not_ends_with: String
-  events_every: EventsWhereInput
-  events_some: EventsWhereInput
-  events_none: EventsWhereInput
 }
 
 input LeadWhereUniqueInput {
@@ -1652,27 +1286,27 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   createLead(data: LeadCreateInput!): Lead!
   createLeadChild(data: LeadChildCreateInput!): LeadChild!
-  createEvents(data: EventsCreateInput!): Events!
+  createEvent(data: EventCreateInput!): Event!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateLead(data: LeadUpdateInput!, where: LeadWhereUniqueInput!): Lead
   updateLeadChild(data: LeadChildUpdateInput!, where: LeadChildWhereUniqueInput!): LeadChild
-  updateEvents(data: EventsUpdateInput!, where: EventsWhereUniqueInput!): Events
+  updateEvent(data: EventUpdateInput!, where: EventWhereUniqueInput!): Event
   deleteUser(where: UserWhereUniqueInput!): User
   deleteLead(where: LeadWhereUniqueInput!): Lead
   deleteLeadChild(where: LeadChildWhereUniqueInput!): LeadChild
-  deleteEvents(where: EventsWhereUniqueInput!): Events
+  deleteEvent(where: EventWhereUniqueInput!): Event
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertLead(where: LeadWhereUniqueInput!, create: LeadCreateInput!, update: LeadUpdateInput!): Lead!
   upsertLeadChild(where: LeadChildWhereUniqueInput!, create: LeadChildCreateInput!, update: LeadChildUpdateInput!): LeadChild!
-  upsertEvents(where: EventsWhereUniqueInput!, create: EventsCreateInput!, update: EventsUpdateInput!): Events!
+  upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyLeads(data: LeadUpdateManyMutationInput!, where: LeadWhereInput): BatchPayload!
   updateManyLeadChildren(data: LeadChildUpdateManyMutationInput!, where: LeadChildWhereInput): BatchPayload!
-  updateManyEventses(data: EventsUpdateManyMutationInput!, where: EventsWhereInput): BatchPayload!
+  updateManyEvents(data: EventUpdateManyMutationInput!, where: EventWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyLeads(where: LeadWhereInput): BatchPayload!
   deleteManyLeadChildren(where: LeadChildWhereInput): BatchPayload!
-  deleteManyEventses(where: EventsWhereInput): BatchPayload!
+  deleteManyEvents(where: EventWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1706,15 +1340,15 @@ type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   leads(where: LeadWhereInput, orderBy: LeadOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Lead]!
   leadChildren(where: LeadChildWhereInput, orderBy: LeadChildOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LeadChild]!
-  eventses(where: EventsWhereInput, orderBy: EventsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Events]!
+  events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
   user(where: UserWhereUniqueInput!): User
   lead(where: LeadWhereUniqueInput!): Lead
   leadChild(where: LeadChildWhereUniqueInput!): LeadChild
-  events(where: EventsWhereUniqueInput!): Events
+  event(where: EventWhereUniqueInput!): Event
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   leadsConnection(where: LeadWhereInput, orderBy: LeadOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LeadConnection!
   leadChildrenConnection(where: LeadChildWhereInput, orderBy: LeadChildOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LeadChildConnection!
-  eventsesConnection(where: EventsWhereInput, orderBy: EventsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventsConnection!
+  eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1727,7 +1361,7 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   lead(where: LeadSubscriptionWhereInput): LeadSubscriptionPayload
   leadChild(where: LeadChildSubscriptionWhereInput): LeadChildSubscriptionPayload
-  events(where: EventsSubscriptionWhereInput): EventsSubscriptionPayload
+  event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
 }
 
 type User implements Node {

@@ -4,7 +4,7 @@ frontend
 
 # Video List
 
-- Finished videos 1 - 12
+- Finished videos 1 - 15
 
 # Todo
 
@@ -13,3 +13,4 @@ frontend
 - Fix the Desktop hamburger menu location
 - Check Prisma Server to make sure it's production-ready (backend)
 - Uncomment secret in prisma.yml (Backend)
+- Finish creating all the GraphQL functions for create, update, remove, etc

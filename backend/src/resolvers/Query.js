@@ -1,7 +1,11 @@
 const { forwardTo } = require('prisma-binding')
 
 const Query = {
-    leads: forwardTo('db')
+    leads: forwardTo('db'),
+    lead: forwardTo('db'),
+    leadChildren: forwardTo('db'),
+    events: forwardTo('db'),
+
 
     // async items(parent, args, ctx, info) {
     //     const items = await ctx.db.query.items()

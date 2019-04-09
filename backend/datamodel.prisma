@@ -8,8 +8,8 @@ type Lead {
   id: ID! @unique
   firstName: String!
   lastName: String
-  mobilePhoneNumber: Int!
-  homePhoneNumber: Int
+  mobilePhoneNumber: String!
+  homePhoneNumber: String
   emailAddress: String
   notes: String
   # centerLocation: String!
@@ -30,7 +30,7 @@ type LeadChild {
   # user: User!
 }
 
-type Events {
+type Event {
   id: ID! @unique
   type: String!
   dueDate: DateTime

@@ -8,12 +8,34 @@ type Mutation {
   createLead(
     firstName: String!,
     lastName: String, 
-    mobilePhoneNumber: Int!,
-    homePhoneNumber: Int,
+    mobilePhoneNumber: String!,
+    homePhoneNumber: String,
     emailAddress: String,
     notes: String): Lead!
+
+  createLeadChild(
+    firstName: String!,
+    lastName: String,
+    gradeOfChild: Int,
+    notes: String,
+    conversionDate: DateTime): LeadChild!
+
+  createEvent(
+    id: ID,
+    type: String!,
+    dueDate: DateTime,
+    dueTime: DateTime,
+    notes: String,
+    message: String,
+    messageTitle: String,
+    messageShortened: String,
+    sentDate: DateTime,
+    sentTime: DateTime): Event!
 }
 
 type Query {
   leads: [Lead]!
+  lead(where: ID!): Lead!
+  leadChildren: [LeadChild]!
+  events: [Event]!
 }
