@@ -31,6 +31,8 @@ type Mutation {
     messageShortened: String,
     sentDate: DateTime,
     sentTime: DateTime): Event!
+
+    deleteEvent(id: ID!): Event
 }
 
 type Query {

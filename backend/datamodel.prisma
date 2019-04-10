@@ -43,4 +43,7 @@ type Event {
   # updatedAt: DateTime
   sentDate: DateTime
   sentTime: DateTime
+  # centerLocation: String!
+  # user: User!
+  lead: Lead!
 }

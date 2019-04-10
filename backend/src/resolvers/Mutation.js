@@ -44,6 +44,20 @@ const Mutation = {
         return event
     },
     
+    async deleteEvent(parent, args, ctx, info) {
+        // TODO: Check if they are logged in
+        // context is defined in createServer
+        // Because of context, the primsa server is exposed to us from prisma.graphql
+        // Look up "type Mutation" in prisma.graphql
+        const event = await ctx.db.mutation.deleteEvent({
+            data: {
+                ...args
+            }
+        }, info)
+
+        return event
+    },
+    
 };
 
 module.exports = Mutation;

@@ -1,5 +1,5 @@
 # source: https://us1.prisma.sh/matt-b5f417/mathnasiumCTSmain/dev
-# timestamp: Tue Apr 09 2019 08:27:09 GMT-0400 (EDT)
+# timestamp: Wed Apr 10 2019 08:22:48 GMT-0400 (EDT)
 
 type AggregateEvent {
   count: Int!
@@ -35,6 +35,7 @@ type Event implements Node {
   messageShortened: String
   sentDate: DateTime
   sentTime: DateTime
+  lead: Lead
 }
 
 """A connection to a list of items."""
@@ -58,6 +59,7 @@ input EventCreateInput {
   messageShortened: String
   sentDate: DateTime
   sentTime: DateTime
+  lead: LeadCreateOneInput
 }
 
 """An edge in a connection."""
@@ -158,6 +160,7 @@ input EventUpdateInput {
   messageShortened: String
   sentDate: DateTime
   sentTime: DateTime
+  lead: LeadUpdateOneInput
 }
 
 input EventUpdateManyMutationInput {
@@ -509,6 +512,7 @@ input EventWhereInput {
 
   """All values greater than or equal the given value."""
   sentTime_gte: DateTime
+  lead: LeadWhereInput
 }
 
 input EventWhereUniqueInput {
@@ -884,6 +888,11 @@ input LeadCreateInput {
   notes: String
 }
 
+input LeadCreateOneInput {
+  create: LeadCreateInput
+  connect: LeadWhereUniqueInput
+}
+
 """An edge in a connection."""
 type LeadEdge {
   """The item at the end of the edge."""
@@ -963,6 +972,15 @@ input LeadSubscriptionWhereInput {
   node: LeadWhereInput
 }
 
+input LeadUpdateDataInput {
+  firstName: String
+  lastName: String
+  mobilePhoneNumber: String
+  homePhoneNumber: String
+  emailAddress: String
+  notes: String
+}
+
 input LeadUpdateInput {
   firstName: String
   lastName: String
@@ -979,6 +997,20 @@ input LeadUpdateManyMutationInput {
   homePhoneNumber: String
   emailAddress: String
   notes: String
+}
+
+input LeadUpdateOneInput {
+  create: LeadCreateInput
+  connect: LeadWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: LeadUpdateDataInput
+  upsert: LeadUpsertNestedInput
+}
+
+input LeadUpsertNestedInput {
+  update: LeadUpdateDataInput!
+  create: LeadCreateInput!
 }
 
 input LeadWhereInput {
@@ -1284,29 +1316,29 @@ scalar Long
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
-  createLead(data: LeadCreateInput!): Lead!
   createLeadChild(data: LeadChildCreateInput!): LeadChild!
   createEvent(data: EventCreateInput!): Event!
+  createLead(data: LeadCreateInput!): Lead!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateLead(data: LeadUpdateInput!, where: LeadWhereUniqueInput!): Lead
   updateLeadChild(data: LeadChildUpdateInput!, where: LeadChildWhereUniqueInput!): LeadChild
   updateEvent(data: EventUpdateInput!, where: EventWhereUniqueInput!): Event
+  updateLead(data: LeadUpdateInput!, where: LeadWhereUniqueInput!): Lead
   deleteUser(where: UserWhereUniqueInput!): User
-  deleteLead(where: LeadWhereUniqueInput!): Lead
   deleteLeadChild(where: LeadChildWhereUniqueInput!): LeadChild
   deleteEvent(where: EventWhereUniqueInput!): Event
+  deleteLead(where: LeadWhereUniqueInput!): Lead
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  upsertLead(where: LeadWhereUniqueInput!, create: LeadCreateInput!, update: LeadUpdateInput!): Lead!
   upsertLeadChild(where: LeadChildWhereUniqueInput!, create: LeadChildCreateInput!, update: LeadChildUpdateInput!): LeadChild!
   upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
+  upsertLead(where: LeadWhereUniqueInput!, create: LeadCreateInput!, update: LeadUpdateInput!): Lead!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  updateManyLeads(data: LeadUpdateManyMutationInput!, where: LeadWhereInput): BatchPayload!
   updateManyLeadChildren(data: LeadChildUpdateManyMutationInput!, where: LeadChildWhereInput): BatchPayload!
   updateManyEvents(data: EventUpdateManyMutationInput!, where: EventWhereInput): BatchPayload!
+  updateManyLeads(data: LeadUpdateManyMutationInput!, where: LeadWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
-  deleteManyLeads(where: LeadWhereInput): BatchPayload!
   deleteManyLeadChildren(where: LeadChildWhereInput): BatchPayload!
   deleteManyEvents(where: EventWhereInput): BatchPayload!
+  deleteManyLeads(where: LeadWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1338,17 +1370,17 @@ type PageInfo {
 
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
-  leads(where: LeadWhereInput, orderBy: LeadOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Lead]!
   leadChildren(where: LeadChildWhereInput, orderBy: LeadChildOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LeadChild]!
   events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
+  leads(where: LeadWhereInput, orderBy: LeadOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Lead]!
   user(where: UserWhereUniqueInput!): User
-  lead(where: LeadWhereUniqueInput!): Lead
   leadChild(where: LeadChildWhereUniqueInput!): LeadChild
   event(where: EventWhereUniqueInput!): Event
+  lead(where: LeadWhereUniqueInput!): Lead
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
-  leadsConnection(where: LeadWhereInput, orderBy: LeadOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LeadConnection!
   leadChildrenConnection(where: LeadChildWhereInput, orderBy: LeadChildOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LeadChildConnection!
   eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
+  leadsConnection(where: LeadWhereInput, orderBy: LeadOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): LeadConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1359,9 +1391,9 @@ type Query {
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
-  lead(where: LeadSubscriptionWhereInput): LeadSubscriptionPayload
   leadChild(where: LeadChildSubscriptionWhereInput): LeadChildSubscriptionPayload
   event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
+  lead(where: LeadSubscriptionWhereInput): LeadSubscriptionPayload
 }
 
 type User implements Node {

@@ -16,6 +16,10 @@ const Nav = () => {
       <Link href="/future">
         <a>Future</a>
       </Link>
+      {/* TODO: Remove this later */}
+      <Link href="/leadsList">
+        <a>Leads List</a>
+      </Link>
     </NavStyles>
   );
 };
