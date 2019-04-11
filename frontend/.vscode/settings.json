@@ -4,5 +4,18 @@
     "titleBar.inactiveForeground": "#000000CC",
     "titleBar.activeBackground": "#FFC600",
     "titleBar.inactiveBackground": "#FFC600CC"
-  }
+  },
+  "editor.formatOnSave": true,
+  "bracket-pair-colorizer-2.colors": [
+    "#00FBFF", // Sky Blue
+    "#00FF04", // Green
+    "#FFC900", // Orange
+    "#FF0000", // Red
+    "#F3FF00", // Yellow
+    "#E400FF", // Purple
+    "#009EFF" // Slightly Darker Blue
+  ],
+  "bracket-pair-colorizer-2.forceIterationColorCycle": true,
+  "bracket-pair-colorizer-2.forceUniqueOpeningColor": true,
+  "bracket-pair-colorizer-2.showBracketsInGutter": true
 }

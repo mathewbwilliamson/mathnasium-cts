@@ -1,22 +1,22 @@
-import Nav from "./Nav";
-import Link from "next/link";
-import styled from "styled-components";
-import PenroseLogo from "./svgs/PenroseLogo";
-import Logo from "./styles/Logo";
-import Router from "next/router";
-import NProgress from "nprogress";
-import { FiMenu } from "react-icons/fi";
-import { IconContext } from "react-icons";
+import Nav from './Nav'
+import Link from 'next/link'
+import styled from 'styled-components'
+import PenroseLogo from './svgs/PenroseLogo'
+import Logo from './styles/Logo'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+import { FiMenu } from 'react-icons/fi'
+import { IconContext } from 'react-icons'
 
 Router.onRouteChangeStart = () => {
-  NProgress.start();
-};
+    NProgress.start()
+}
 Router.onRouteChangeComplete = () => {
-  NProgress.done();
-};
+    NProgress.done()
+}
 Router.onRouteChangeError = () => {
-  NProgress.done();
-};
+    NProgress.done()
+}
 
 const StyledHeader = styled.header`
   background-image: linear-gradient(
@@ -61,36 +61,41 @@ const StyledHeader = styled.header`
   .postHeader {
     height: 20vh;
   }
-`;
+`
 
-const LogoStyles = styled.div``;
+const LogoStyles = styled.div``
 
 const Header = () => {
-  return (
-    <StyledHeader>
-      <div>
-        <div className="bar">
-          <div className="topContainer">
-            <Logo>
-              <div className="logoContainer">
-                <PenroseLogo />
-                <div className="logoLabel">Close That Sale!</div>
-              </div>
-            </Logo>
-            <IconContext.Provider
-              value={{ size: "1.4em", className: "hamburgerMenu" }}
-            >
-              <div className="hamburgerMenuContainer">
-                <FiMenu />
-              </div>
-            </IconContext.Provider>
-          </div>
-          <Nav />
-        </div>
-      </div>
-      <div className="postHeader" />
-    </StyledHeader>
-  );
-};
+    return (
+        <StyledHeader>
+            <div>
+                <div className="bar">
+                    <div className="topContainer">
+                        <Logo>
+                            <div className="logoContainer">
+                                <PenroseLogo />
+                                <div className="logoLabel">
+                                    Close That Sale!
+                                </div>
+                            </div>
+                        </Logo>
+                        <IconContext.Provider
+                            value={{
+                                size: '1.4em',
+                                className: 'hamburgerMenu',
+                            }}
+                        >
+                            <div className="hamburgerMenuContainer">
+                                <FiMenu />
+                            </div>
+                        </IconContext.Provider>
+                    </div>
+                    <Nav />
+                </div>
+            </div>
+            <div className="postHeader" />
+        </StyledHeader>
+    )
+}
 
-export default Header;
+export default Header
