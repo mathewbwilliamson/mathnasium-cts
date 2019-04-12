@@ -4,7 +4,7 @@ frontend
 
 # Video List
 
--   Finished videos 1 - 16
+-   Finished videos 1 - 17
 
 # Todo
 
@@ -19,5 +19,7 @@ frontend
 -   Need to figure out how to assign Events to Leads and vice versa
 -   ? Fire off Events GraphQL but only get back texts or emails or calls
 -   Finish New Lead Form
--   Need Button disabled CSS
--   Redo CSS for Form, including the onError class
+-   DONE Need Button disabled CSS
+-   DONE Redo CSS for Form, including the onError class
+-   Create Lead Form: What is really required? Make sure that only those things are required and work on the form. Add some way of telling the user which elements are required.
+-   Create a single lead page. Then update CreateLead.js with that route in the Router.push()

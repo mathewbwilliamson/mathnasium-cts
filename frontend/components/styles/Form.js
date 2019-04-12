@@ -33,15 +33,15 @@ const Form = styled.form`
         border: 1px solid black;
         &:focus {
             outline: 0;
-            border-color: ${props => props.theme.red};
+            border-color: ${props => props.theme.maingreen};
         }
     }
-    .no-error + span:after {
+    /* .no-error + span:after {
         position: absolute;
         content: '✓';
         padding-left: 5px;
         color: #009000;
-    }
+    } */
 
     .has-error + span:after {
         position: absolute;
@@ -53,12 +53,16 @@ const Form = styled.form`
     button,
     input[type='submit'] {
         width: auto;
-        background: red;
-        color: white;
+        background: ${props => props.theme.darkgreen};
+        color: ${props => props.theme.white};
         border: 0;
         font-size: 2rem;
         font-weight: 600;
         padding: 0.5rem 1.2rem;
+
+        &:disabled {
+            opacity: 0.2;
+        }
     }
     fieldset {
         border: 0;
@@ -73,9 +77,9 @@ const Form = styled.form`
             display: block;
             background-image: linear-gradient(
                 to right,
-                #ff3019 0%,
-                #e2b04a 50%,
-                #ff3019 100%
+                ${props => props.theme.maingreen} 0%,
+                ${props => props.theme.darkgreen} 50%,
+                ${props => props.theme.maingreen} 100%
             );
         }
         &[aria-busy='true']::before {

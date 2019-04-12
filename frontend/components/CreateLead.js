@@ -4,8 +4,30 @@ import gql from 'graphql-tag'
 import Form from './styles/Form'
 import { isNamedType } from 'graphql'
 import FormErrors from './FormErrors'
+import Error from './ErrorMessage'
+import Router from 'next/router'
 
-// [matt]: TODO Need to create new Form styles
+const CREATE_LEAD_MUTATION = gql`
+    mutation CREATE_LEAD_MUTATION(
+        $firstName: String!
+        $lastName: String
+        $mobilePhoneNumber: String!
+        $homePhoneNumber: String
+        $emailAddress: String
+        $notes: String
+    ) {
+        createLead(
+            firstName: $firstName
+            lastName: $lastName
+            mobilePhoneNumber: $mobilePhoneNumber
+            homePhoneNumber: $homePhoneNumber
+            emailAddress: $emailAddress
+            notes: $notes
+        ) {
+            id
+        }
+    }
+`
 
 class CreateLead extends React.Component {
     constructor(props) {
@@ -113,109 +135,126 @@ class CreateLead extends React.Component {
 
     render() {
         return (
-            <Form>
-                <h2>Enter a Lead</h2>
-                <fieldset>
-                    <label htmlFor="firstName">
-                        First Name
-                        <input
-                            type="text"
-                            id="firstName"
-                            name="firstName"
-                            placeholder="First Name"
-                            value={this.state.firstName}
-                            onChange={this.handleChange}
-                            className={`${this.errorClass(
-                                this.state.formErrors.firstName
-                            )}`}
-                            required
-                        />
-                        <span class="validity" />
-                    </label>
-                    <label htmlFor="lastName">
-                        Last Name
-                        <input
-                            type="text"
-                            id="lastName"
-                            name="lastName"
-                            placeholder="Last Name"
-                            value={this.state.lastName}
-                            onChange={this.handleChange}
-                            className={`${this.errorClass(
-                                this.state.formErrors.lastName
-                            )}`}
-                        />
-                        <span class="validity" />
-                    </label>
-                    <label htmlFor="mobilePhoneNumber">
-                        Mobile Phone Number
-                        <input
-                            type="tel"
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                            id="mobilePhoneNumber"
-                            name="mobilePhoneNumber"
-                            placeholder="Mobile Phone Number"
-                            value={this.state.mobilePhoneNumber}
-                            onChange={this.handleChange}
-                            className={`${this.errorClass(
-                                this.state.formErrors.mobilePhoneNumber
-                            )}`}
-                            required
-                        />
-                        <span class="validity" />
-                    </label>
-                    <label htmlFor="homePhoneNumber">
-                        Home Phone Number
-                        <input
-                            type="tel"
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                            id="homePhoneNumber"
-                            name="homePhoneNumber"
-                            placeholder="Home Phone Number"
-                            value={this.state.homePhoneNumber}
-                            onChange={this.handleChange}
-                            className={`${this.errorClass(
-                                this.state.formErrors.homePhoneNumber
-                            )}`}
-                        />
-                        <span class="validity" />
-                    </label>
-                    <label htmlFor="emailAddress">
-                        Email Address
-                        <input
-                            type="text"
-                            id="emailAddress"
-                            name="emailAddress"
-                            placeholder="Email Address"
-                            value={this.state.emailAddress}
-                            onChange={this.handleChange}
-                            className={`${this.errorClass(
-                                this.state.formErrors.emailAddress
-                            )}`}
-                        />
-                        <span class="validity" />
-                    </label>
-                    <label htmlFor="notes">
-                        Notes
-                        <textarea
-                            id="notes"
-                            name="notes"
-                            placeholder="Notes"
-                            value={this.state.notes}
-                            onChange={this.handleChange}
-                            className={`${this.errorClass(
-                                this.state.formErrors.notes
-                            )}`}
-                        />
-                        <span class="validity" />
-                    </label>
-                </fieldset>
-                <button type="submit" disabled={!this.state.formValid}>
-                    Save Lead
-                </button>
-            </Form>
+            <Mutation mutation={CREATE_LEAD_MUTATION} variables={this.state}>
+                {(createLead, { loading, error }) => (
+                    <Form
+                        onSubmit={async e => {
+                            // Stop the form from submitting
+                            e.preventDefault()
+                            //Send the data to the server
+                            const res = await createLead()
+                            console.log('[matt] res', res)
+                            //TODO: Change them to the single lead page (right now, only all leads)
+                            Router.push({
+                                pathname: '/leadsList',
+                                query: { id: res.data.createLead.id },
+                            })
+                        }}
+                    >
+                        <h2>Enter a Lead</h2>
+                        <Error error={error} />
+                        <fieldset disabled={loading} aria-busy={loading}>
+                            <label htmlFor="firstName">
+                                First Name
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder="First Name"
+                                    value={this.state.firstName}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.firstName
+                                    )}`}
+                                    required
+                                />
+                                <span className="validity" />
+                            </label>
+                            <label htmlFor="lastName">
+                                Last Name
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    name="lastName"
+                                    placeholder="Last Name"
+                                    value={this.state.lastName}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.lastName
+                                    )}`}
+                                />
+                                <span className="validity" />
+                            </label>
+                            <label htmlFor="mobilePhoneNumber">
+                                Mobile Phone Number
+                                <input
+                                    type="tel"
+                                    id="mobilePhoneNumber"
+                                    name="mobilePhoneNumber"
+                                    placeholder="Mobile Phone Number"
+                                    value={this.state.mobilePhoneNumber}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.mobilePhoneNumber
+                                    )}`}
+                                    required
+                                />
+                                <span className="validity" />
+                            </label>
+                            <label htmlFor="homePhoneNumber">
+                                Home Phone Number
+                                <input
+                                    type="tel"
+                                    id="homePhoneNumber"
+                                    name="homePhoneNumber"
+                                    placeholder="Home Phone Number"
+                                    value={this.state.homePhoneNumber}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.homePhoneNumber
+                                    )}`}
+                                />
+                                <span className="validity" />
+                            </label>
+                            <label htmlFor="emailAddress">
+                                Email Address
+                                <input
+                                    type="text"
+                                    id="emailAddress"
+                                    name="emailAddress"
+                                    placeholder="Email Address"
+                                    value={this.state.emailAddress}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.emailAddress
+                                    )}`}
+                                />
+                                <span className="validity" />
+                            </label>
+                            <label htmlFor="notes">
+                                Notes
+                                <textarea
+                                    id="notes"
+                                    name="notes"
+                                    placeholder="Notes"
+                                    value={this.state.notes}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.notes
+                                    )}`}
+                                />
+                                <span className="validity" />
+                            </label>
+                        </fieldset>
+                        <button type="submit" disabled={!this.state.formValid}>
+                            Save Lead
+                        </button>
+                    </Form>
+                )}
+            </Mutation>
         )
     }
 }
 
 export default CreateLead
+export { CREATE_LEAD_MUTATION }
