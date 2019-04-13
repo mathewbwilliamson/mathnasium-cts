@@ -5,6 +5,7 @@ const Query = {
     lead: forwardTo('db'),
     leadChildren: forwardTo('db'),
     events: forwardTo('db'),
+    event: forwardTo('db')
 
 
     // async items(parent, args, ctx, info) {

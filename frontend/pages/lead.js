@@ -1,16 +1,18 @@
 import React from 'react'
 import Link from 'next/link'
 import BasicPageStyles from '../components/styles/BasicPageStyles'
-import CreateLead from '../components/CreateLead'
+import SingleLead from '../components/SingleLead'
 
-const NewLead = props => {
+const Lead = props => {
+    console.log('[matt] props', props.query.id)
+
     return (
         <BasicPageStyles>
             <div className="container">
-                <CreateLead />
+                <SingleLead id={props.query.id} />
             </div>
         </BasicPageStyles>
     )
 }
 
-export default NewLead
+export default Lead
