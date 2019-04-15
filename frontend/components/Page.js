@@ -1,31 +1,31 @@
-import React, { Component } from "react";
-import Header from "./Header";
-import Meta from "./Meta";
-import styled, { ThemeProvider, injectGlobal } from "styled-components";
+import React, { Component } from 'react'
+import Header from './Header'
+import Meta from './Meta'
+import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 
 const theme = {
-  //theme is an object that contains all the variables for the entire project
-  red: "#FF0000",
-  black: "#393939",
-  maingreen: "#75CA46",
-  lightgreen: "#ACDBCE",
-  brightgreen: "#67C352",
-  darkgreen: "#31AE72",
-  grey: "#3A3A3A",
-  lightgrey: "#F1F1F1",
-  highlightgrey: "#E5E5E5",
-  purple: "#806DCB",
-  darkgrey: "#363F41",
-  offwhite: "#FFFFFF",
-  white: "#FFFFFF",
-  maxWidth: "1000px",
-  bs: "0 12px 24px 0 rgba(0, 0, 0, 0.09)"
-};
+    //theme is an object that contains all the variables for the entire project
+    red: '#FF0000',
+    black: '#393939',
+    maingreen: '#75CA46',
+    lightgreen: '#ACDBCE',
+    brightgreen: '#67C352',
+    darkgreen: '#31AE72',
+    grey: '#3A3A3A',
+    lightgrey: '#F1F1F1',
+    highlightgrey: '#E5E5E5',
+    purple: '#806DCB',
+    darkgrey: '#363F41',
+    offwhite: '#FFFFFF',
+    white: '#FFFFFF',
+    maxWidth: '1000px',
+    bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
+}
 
 const StyledPage = styled.div`
-  background: white;
-  color: ${props => props.theme.black};
-`;
+    background: white;
+    color: ${props => props.theme.black};
+`
 
 const Inner = styled.div`
   max-width: ${props => props.theme.maxWidth};
@@ -39,7 +39,7 @@ const Inner = styled.div`
   z-index: 2;
   position: relative;
   top: -130px;
-`;
+`
 // Font size is 10px for the basic size so rem math is easy. Default is 16.
 injectGlobal`
   @font-face {
@@ -67,24 +67,26 @@ injectGlobal`
     color: ${theme.black};
   }
   button {  font-family: 'radnika_next'; }
-`;
+`
 
 class Page extends Component {
-  state = {};
-  render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <StyledPage>
-          <Meta />
-          <Header />
-          <Inner>{this.props.children}</Inner>
-        </StyledPage>
-      </ThemeProvider>
-    );
-  }
+    state = {}
+    render() {
+        return (
+            <ThemeProvider theme={theme}>
+                <div id="main">
+                    <StyledPage>
+                        <Meta />
+                        <Header />
+                        <Inner>{this.props.children}</Inner>
+                    </StyledPage>
+                </div>
+            </ThemeProvider>
+        )
+    }
 }
 
-export default Page;
+export default Page
 
 // Notes for styled
 // const MyButton = styled.button`

@@ -7,6 +7,8 @@ import Router from 'next/router'
 import NProgress from 'nprogress'
 import { FiMenu } from 'react-icons/fi'
 import { IconContext } from 'react-icons'
+import HamburgerMenu from './HamburgerMenu'
+import HamburgerMenuStyles from './styles/HamburgerMenuStyles'
 
 Router.onRouteChangeStart = () => {
     NProgress.start()
@@ -69,7 +71,7 @@ const Header = () => {
     return (
         <StyledHeader>
             <div>
-                <div className="bar">
+                <div className="bar" id="barrs">
                     <div className="topContainer">
                         <Logo>
                             <div className="logoContainer">
@@ -79,7 +81,15 @@ const Header = () => {
                                 </div>
                             </div>
                         </Logo>
-                        <IconContext.Provider
+                        <HamburgerMenuStyles>
+                            <HamburgerMenu
+                                isOpen={true}
+                                pageWrapId={'main'}
+                                outerContainerId={'barrs'}
+                            />
+                        </HamburgerMenuStyles>
+
+                        {/* <IconContext.Provider
                             value={{
                                 size: '1.4em',
                                 className: 'hamburgerMenu',
@@ -88,7 +98,7 @@ const Header = () => {
                             <div className="hamburgerMenuContainer">
                                 <FiMenu />
                             </div>
-                        </IconContext.Provider>
+                        </IconContext.Provider> */}
                     </div>
                     <Nav />
                 </div>
