@@ -2,19 +2,19 @@ import styled from 'styled-components'
 
 const HamburgerMenuStyles = styled.div`
     /* Individual item */
-    .bm-item {
-        display: inline-block;
-
+    a {
+        display: block;
         /* Our sidebar item styling */
         text-decoration: none;
         margin-bottom: 10px;
-        color: #d1d1d1;
+        color: ${props => props.theme.offwhite};
         transition: color 0.2s;
     }
 
     /* Change color on hover */
-    .bm-item:hover {
-        color: white;
+    a:hover {
+        color: ${props => props.theme.purple};
+        transition: color 0.2s;
     }
 
     /* The rest copied directly from react-burger-menu docs */

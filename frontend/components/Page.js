@@ -16,7 +16,7 @@ const theme = {
     highlightgrey: '#E5E5E5',
     purple: '#806DCB',
     darkgrey: '#363F41',
-    offwhite: '#FFFFFF',
+    offwhite: '#F8F9FF',
     white: '#FFFFFF',
     maxWidth: '1000px',
     bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
@@ -78,7 +78,7 @@ class Page extends Component {
                     <StyledPage>
                         <Meta />
                         <Header />
-                        <Inner>{this.props.children}</Inner>
+                        <Inner id="innerContainer">{this.props.children}</Inner>
                     </StyledPage>
                 </div>
             </ThemeProvider>

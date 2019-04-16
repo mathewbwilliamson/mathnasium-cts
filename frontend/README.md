@@ -23,3 +23,4 @@ frontend
 -   DONE Redo CSS for Form, including the onError class
 -   Create Lead Form: What is really required? Make sure that only those things are required and work on the form. Add some way of telling the user which elements are required.
 -   Create a single lead page. Then update CreateLead.js with that route in the Router.push()
+-   Make a better spot for the Hamburger Menu Icon. Hamburger Menu is done.

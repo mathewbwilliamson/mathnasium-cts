@@ -5,8 +5,6 @@ import PenroseLogo from './svgs/PenroseLogo'
 import Logo from './styles/Logo'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import { FiMenu } from 'react-icons/fi'
-import { IconContext } from 'react-icons'
 import HamburgerMenu from './HamburgerMenu'
 import HamburgerMenuStyles from './styles/HamburgerMenuStyles'
 
@@ -70,6 +68,13 @@ const LogoStyles = styled.div``
 const Header = () => {
     return (
         <StyledHeader>
+            <HamburgerMenuStyles>
+                <HamburgerMenu
+                    isOpen={false}
+                    pageWrapId={'main'}
+                    outerContainerId={'innerContainer'}
+                />
+            </HamburgerMenuStyles>
             <div>
                 <div className="bar" id="barrs">
                     <div className="topContainer">
@@ -81,24 +86,6 @@ const Header = () => {
                                 </div>
                             </div>
                         </Logo>
-                        <HamburgerMenuStyles>
-                            <HamburgerMenu
-                                isOpen={true}
-                                pageWrapId={'main'}
-                                outerContainerId={'barrs'}
-                            />
-                        </HamburgerMenuStyles>
-
-                        {/* <IconContext.Provider
-                            value={{
-                                size: '1.4em',
-                                className: 'hamburgerMenu',
-                            }}
-                        >
-                            <div className="hamburgerMenuContainer">
-                                <FiMenu />
-                            </div>
-                        </IconContext.Provider> */}
                     </div>
                     <Nav />
                 </div>
