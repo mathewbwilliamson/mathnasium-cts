@@ -50,6 +50,6 @@ type Query {
   leads: [Lead]!
   lead(where: LeadWhereUniqueInput!): Lead
   leadChildren: [LeadChild]!
-  events: [Event]!
+  events(where: EventWhereInput): [Event]!
   event(where: EventWhereUniqueInput!): Event
 }

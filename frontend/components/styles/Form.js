@@ -36,12 +36,16 @@ const Form = styled.form`
             border-color: ${props => props.theme.maingreen};
         }
     }
-    /* .no-error + span:after {
-        position: absolute;
-        content: '✓';
+    label div {
+        display: flex;
+        align-items: center;
+    }
+
+    .required {
+        font-size: 0.9rem;
         padding-left: 5px;
-        color: #009000;
-    } */
+        vertical-align: center;
+    }
 
     .has-error + span:after {
         position: absolute;

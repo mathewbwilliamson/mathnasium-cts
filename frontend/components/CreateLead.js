@@ -48,9 +48,9 @@ class CreateLead extends React.Component {
                 emailAddress: '',
                 notes: '',
             },
-            emailAddressValid: false,
+            emailAddressValid: true,
             mobilePhoneNumberValid: false,
-            homePhoneNumberValid: false,
+            homePhoneNumberValid: true,
             formValid: false,
         }
 
@@ -77,9 +77,11 @@ class CreateLead extends React.Component {
 
         switch (fieldName) {
             case 'emailAddress':
-                emailAddressValid = !!value.match(
-                    /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i
-                )
+                console.log('[matt] value', value)
+
+                emailAddressValid =
+                    value &&
+                    !!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
                 fieldValidationErrors.emailAddress = emailAddressValid
                     ? ''
                     : ' is invalid'
@@ -93,9 +95,11 @@ class CreateLead extends React.Component {
                     : ' is invalid'
                 break
             case 'homePhoneNumber':
-                homePhoneNumberValid = !!value.match(
-                    /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/im
-                )
+                homePhoneNumberValid =
+                    value &&
+                    !!value.match(
+                        /^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/im
+                    )
                 fieldValidationErrors.homePhoneNumber = homePhoneNumberValid
                     ? ''
                     : ' is invalid'
@@ -143,10 +147,8 @@ class CreateLead extends React.Component {
                             e.preventDefault()
                             //Send the data to the server
                             const res = await createLead()
-                            console.log('[matt] res', res)
-                            //TODO: Change them to the single lead page (right now, only all leads)
                             Router.push({
-                                pathname: '/leadsList',
+                                pathname: '/lead',
                                 query: { id: res.data.createLead.id },
                             })
                         }}
@@ -155,7 +157,10 @@ class CreateLead extends React.Component {
                         <Error error={error} />
                         <fieldset disabled={loading} aria-busy={loading}>
                             <label htmlFor="firstName">
-                                First Name
+                                <div>
+                                    First Name
+                                    <span className="required">(Required)</span>
+                                </div>
                                 <input
                                     type="text"
                                     id="firstName"
@@ -186,7 +191,10 @@ class CreateLead extends React.Component {
                                 <span className="validity" />
                             </label>
                             <label htmlFor="mobilePhoneNumber">
-                                Mobile Phone Number
+                                <div>
+                                    Mobile Phone Number
+                                    <span className="required">(Required)</span>
+                                </div>
                                 <input
                                     type="tel"
                                     id="mobilePhoneNumber"

@@ -9,7 +9,6 @@ import Router from 'next/router'
 
 const CREATE_EVENT_MUTATION = gql`
     mutation CREATE_EVENT_MUTATION(
-        $id: ID
         $type: String!
         $dueDate: DateTime
         $dueTime: DateTime
@@ -17,11 +16,8 @@ const CREATE_EVENT_MUTATION = gql`
         $message: String
         $messageTitle: String
         $messageShortened: String
-        $sentDate: DateTime
-        $sentTime: DateTime
     ) {
         createEvent(
-            id: $id
             type: $type
             dueDate: $dueDate
             dueTime: $dueTime
@@ -29,8 +25,6 @@ const CREATE_EVENT_MUTATION = gql`
             message: $message
             messageTitle: $messageTitle
             messageShortened: $messageShortened
-            sentDate: $sentDate
-            sentTime: $sentTime
         ) {
             id
         }
@@ -42,19 +36,21 @@ class CreateEvent extends React.Component {
         super(props)
 
         this.state = {
-            firstName: '',
-            lastName: '',
-            mobilePhoneNumber: '',
-            homePhoneNumber: '',
-            emailAddress: '',
+            type: '',
+            dueDate: '',
+            dueTime: '',
             notes: '',
+            message: '',
+            messageTitle: '',
+            messageShortened: '',
             formErrors: {
-                firstName: '',
-                lastName: '',
-                mobilePhoneNumber: '',
-                homePhoneNumber: '',
-                emailAddress: '',
+                type: '',
+                dueDate: '',
+                dueTime: '',
                 notes: '',
+                message: '',
+                messageTitle: '',
+                messageShortened: '',
             },
             emailAddressValid: false,
             mobilePhoneNumberValid: false,
@@ -152,90 +148,62 @@ class CreateEvent extends React.Component {
                             //Send the data to the server
                             const res = await createLead()
                             console.log('[matt] res', res)
-                            //TODO: Change them to the single lead page (right now, only all leads)
                             Router.push({
-                                pathname: '/leadsList',
-                                query: { id: res.data.createLead.id },
+                                pathname: '/event',
+                                query: { id: res.data.createEvent.id },
                             })
                         }}
                     >
-                        <h2>Enter a Lead</h2>
+                        <h2>Enter an Event</h2>
                         <Error error={error} />
                         <fieldset disabled={loading} aria-busy={loading}>
-                            <label htmlFor="firstName">
-                                First Name
+                            {/* // [matt]: Make into a dropdown for Text, Call, Email */}
+                            <label htmlFor="type">
+                                Type
                                 <input
                                     type="text"
-                                    id="firstName"
-                                    name="firstName"
-                                    placeholder="First Name"
-                                    value={this.state.firstName}
+                                    id="type"
+                                    name="type"
+                                    placeholder="Type"
+                                    value={this.state.type}
                                     onChange={this.handleChange}
                                     className={`${this.errorClass(
-                                        this.state.formErrors.firstName
+                                        this.state.formErrors.type
                                     )}`}
                                     required
                                 />
                                 <span className="validity" />
                             </label>
-                            <label htmlFor="lastName">
-                                Last Name
+                            {/* // [matt]: Make into a date picker */}
+                            <label htmlFor="dueDate">
+                                Due Date
                                 <input
                                     type="text"
-                                    id="lastName"
-                                    name="lastName"
-                                    placeholder="Last Name"
-                                    value={this.state.lastName}
+                                    id="dueDate"
+                                    name="dueDate"
+                                    placeholder="Due Date"
+                                    value={this.state.dueDate}
                                     onChange={this.handleChange}
                                     className={`${this.errorClass(
-                                        this.state.formErrors.lastName
+                                        this.state.formErrors.dueDate
                                     )}`}
                                 />
                                 <span className="validity" />
                             </label>
-                            <label htmlFor="mobilePhoneNumber">
-                                Mobile Phone Number
+                            {/* // [matt]: Make into a date picker */}
+                            <label htmlFor="dueTime">
+                                Due Time
                                 <input
                                     type="tel"
-                                    id="mobilePhoneNumber"
-                                    name="mobilePhoneNumber"
-                                    placeholder="Mobile Phone Number"
-                                    value={this.state.mobilePhoneNumber}
+                                    id="dueTime"
+                                    name="dueTime"
+                                    placeholder="Due Time"
+                                    value={this.state.dueTime}
                                     onChange={this.handleChange}
                                     className={`${this.errorClass(
-                                        this.state.formErrors.mobilePhoneNumber
+                                        this.state.formErrors.dueTime
                                     )}`}
                                     required
-                                />
-                                <span className="validity" />
-                            </label>
-                            <label htmlFor="homePhoneNumber">
-                                Home Phone Number
-                                <input
-                                    type="tel"
-                                    id="homePhoneNumber"
-                                    name="homePhoneNumber"
-                                    placeholder="Home Phone Number"
-                                    value={this.state.homePhoneNumber}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.homePhoneNumber
-                                    )}`}
-                                />
-                                <span className="validity" />
-                            </label>
-                            <label htmlFor="emailAddress">
-                                Email Address
-                                <input
-                                    type="text"
-                                    id="emailAddress"
-                                    name="emailAddress"
-                                    placeholder="Email Address"
-                                    value={this.state.emailAddress}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.emailAddress
-                                    )}`}
                                 />
                                 <span className="validity" />
                             </label>
@@ -249,6 +217,51 @@ class CreateEvent extends React.Component {
                                     onChange={this.handleChange}
                                     className={`${this.errorClass(
                                         this.state.formErrors.notes
+                                    )}`}
+                                />
+                                <span className="validity" />
+                            </label>
+                            <label htmlFor="messsage">
+                                Message
+                                <input
+                                    type="text"
+                                    id="messsage"
+                                    name="messsage"
+                                    placeholder="Message"
+                                    value={this.state.messsage}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.messsage
+                                    )}`}
+                                />
+                                <span className="validity" />
+                            </label>
+                            <label htmlFor="messsageTitle">
+                                Message Title
+                                <input
+                                    type="text"
+                                    id="messsageTitle"
+                                    name="messsageTitle"
+                                    placeholder="Message Title"
+                                    value={this.state.messsageTitle}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.messsageTitle
+                                    )}`}
+                                />
+                                <span className="validity" />
+                            </label>
+                            <label htmlFor="messsageShortened">
+                                Message Shortened
+                                <input
+                                    type="text"
+                                    id="messsageShortened"
+                                    name="messsageShortened"
+                                    placeholder="Message Shortened"
+                                    value={this.state.messsageShortened}
+                                    onChange={this.handleChange}
+                                    className={`${this.errorClass(
+                                        this.state.formErrors.messsageShortened
                                     )}`}
                                 />
                                 <span className="validity" />

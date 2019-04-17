@@ -24,8 +24,8 @@ const HamburgerMenuStyles = styled.div`
         position: fixed;
         width: 36px;
         height: 30px;
-        left: 36px;
-        top: 36px;
+        right: 12px;
+        top: 14px;
     }
 
     /* Color/shape of burger icon bars */
