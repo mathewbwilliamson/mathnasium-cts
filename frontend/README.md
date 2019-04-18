@@ -16,14 +16,16 @@ frontend
 -   DONE Create Lead Form: What is really required? Make sure that only those things are required and work on the form. Add some way of telling the user which elements are required.
 -   DONE Fix Today list and Future list so that all calls go in the calls area, texts in the texts area, etc.
 -   DONE Make a better spot for the Hamburger Menu Icon. Hamburger Menu is done.
+-   DONE Fix the Desktop hamburger menu location
 
 -   Need to choose a typeface
 -   Menu bottom highlight: Choose a better color
--   Fix the Desktop hamburger menu location
 -   Check Prisma Server to make sure it's production-ready (backend)
 -   Uncomment secret in prisma.yml (Backend)
 -   Need to figure how to delete an Event
 -   Need to figure out how to assign Events to Leads and vice versa
 -   Create Enter Event page (Started, need to get it running with validation)
--   THink more about what you need a new Event to have as a required field. Type, DueDate, message, messageTitle, lead (once you figure that out)
+-   Think more about what you need a new Event to have as a required field. Type, DueDate, message, messageTitle, lead (once you figure that out)
 -   Need to figure out dates to finish Today list in GraphQL
+-   Edit a Lead Functionality (Page is done, need to finish video 19 starting at 16:00)
+-   Edit an Event Functionality

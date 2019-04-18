@@ -139,140 +139,141 @@ class CreateEvent extends React.Component {
 
     render() {
         return (
-            <Mutation mutation={CREATE_EVENT_MUTATION} variables={this.state}>
-                {(createLead, { loading, error }) => (
-                    <Form
-                        onSubmit={async e => {
-                            // Stop the form from submitting
-                            e.preventDefault()
-                            //Send the data to the server
-                            const res = await createLead()
-                            console.log('[matt] res', res)
-                            Router.push({
-                                pathname: '/event',
-                                query: { id: res.data.createEvent.id },
-                            })
-                        }}
-                    >
-                        <h2>Enter an Event</h2>
-                        <Error error={error} />
-                        <fieldset disabled={loading} aria-busy={loading}>
-                            {/* // [matt]: Make into a dropdown for Text, Call, Email */}
-                            <label htmlFor="type">
-                                Type
-                                <input
-                                    type="text"
-                                    id="type"
-                                    name="type"
-                                    placeholder="Type"
-                                    value={this.state.type}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.type
-                                    )}`}
-                                    required
-                                />
-                                <span className="validity" />
-                            </label>
-                            {/* // [matt]: Make into a date picker */}
-                            <label htmlFor="dueDate">
-                                Due Date
-                                <input
-                                    type="text"
-                                    id="dueDate"
-                                    name="dueDate"
-                                    placeholder="Due Date"
-                                    value={this.state.dueDate}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.dueDate
-                                    )}`}
-                                />
-                                <span className="validity" />
-                            </label>
-                            {/* // [matt]: Make into a date picker */}
-                            <label htmlFor="dueTime">
-                                Due Time
-                                <input
-                                    type="tel"
-                                    id="dueTime"
-                                    name="dueTime"
-                                    placeholder="Due Time"
-                                    value={this.state.dueTime}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.dueTime
-                                    )}`}
-                                    required
-                                />
-                                <span className="validity" />
-                            </label>
-                            <label htmlFor="notes">
-                                Notes
-                                <textarea
-                                    id="notes"
-                                    name="notes"
-                                    placeholder="Notes"
-                                    value={this.state.notes}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.notes
-                                    )}`}
-                                />
-                                <span className="validity" />
-                            </label>
-                            <label htmlFor="messsage">
-                                Message
-                                <input
-                                    type="text"
-                                    id="messsage"
-                                    name="messsage"
-                                    placeholder="Message"
-                                    value={this.state.messsage}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.messsage
-                                    )}`}
-                                />
-                                <span className="validity" />
-                            </label>
-                            <label htmlFor="messsageTitle">
-                                Message Title
-                                <input
-                                    type="text"
-                                    id="messsageTitle"
-                                    name="messsageTitle"
-                                    placeholder="Message Title"
-                                    value={this.state.messsageTitle}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.messsageTitle
-                                    )}`}
-                                />
-                                <span className="validity" />
-                            </label>
-                            <label htmlFor="messsageShortened">
-                                Message Shortened
-                                <input
-                                    type="text"
-                                    id="messsageShortened"
-                                    name="messsageShortened"
-                                    placeholder="Message Shortened"
-                                    value={this.state.messsageShortened}
-                                    onChange={this.handleChange}
-                                    className={`${this.errorClass(
-                                        this.state.formErrors.messsageShortened
-                                    )}`}
-                                />
-                                <span className="validity" />
-                            </label>
-                        </fieldset>
-                        <button type="submit" disabled={!this.state.formValid}>
-                            Save Lead
-                        </button>
-                    </Form>
-                )}
-            </Mutation>
+            <div>This needs to be fixed</div>
+            // <Mutation mutation={CREATE_EVENT_MUTATION} variables={this.state}>
+            //     {(createLead, { loading, error }) => (
+            //         <Form
+            //             onSubmit={async e => {
+            //                 // Stop the form from submitting
+            //                 e.preventDefault()
+            //                 //Send the data to the server
+            //                 const res = await createLead()
+            //                 console.log('[matt] res', res)
+            //                 Router.push({
+            //                     pathname: '/event',
+            //                     query: { id: res.data.createEvent.id },
+            //                 })
+            //             }}
+            //         >
+            //             <h2>Enter an Event</h2>
+            //             <Error error={error} />
+            //             <fieldset disabled={loading} aria-busy={loading}>
+            //                 {/* // [matt]: Make into a dropdown for Text, Call, Email */}
+            //                 <label htmlFor="type">
+            //                     Type
+            //                     <input
+            //                         type="text"
+            //                         id="type"
+            //                         name="type"
+            //                         placeholder="Type"
+            //                         value={this.state.type}
+            //                         onChange={this.handleChange}
+            //                         className={`${this.errorClass(
+            //                             this.state.formErrors.type
+            //                         )}`}
+            //                         required
+            //                     />
+            //                     <span className="validity" />
+            //                 </label>
+            //                 {/* // [matt]: Make into a date picker */}
+            //                 <label htmlFor="dueDate">
+            //                     Due Date
+            //                     <input
+            //                         type="text"
+            //                         id="dueDate"
+            //                         name="dueDate"
+            //                         placeholder="Due Date"
+            //                         value={this.state.dueDate}
+            //                         onChange={this.handleChange}
+            //                         className={`${this.errorClass(
+            //                             this.state.formErrors.dueDate
+            //                         )}`}
+            //                     />
+            //                     <span className="validity" />
+            //                 </label>
+            //                 {/* // [matt]: Make into a date picker */}
+            //                 <label htmlFor="dueTime">
+            //                     Due Time
+            //                     <input
+            //                         type="tel"
+            //                         id="dueTime"
+            //                         name="dueTime"
+            //                         placeholder="Due Time"
+            //                         value={this.state.dueTime}
+            //                         onChange={this.handleChange}
+            //                         className={`${this.errorClass(
+            //                             this.state.formErrors.dueTime
+            //                         )}`}
+            //                         required
+            //                     />
+            //                     <span className="validity" />
+            //                 </label>
+            //                 <label htmlFor="notes">
+            //                     Notes
+            //                     <textarea
+            //                         id="notes"
+            //                         name="notes"
+            //                         placeholder="Notes"
+            //                         value={this.state.notes}
+            //                         onChange={this.handleChange}
+            //                         className={`${this.errorClass(
+            //                             this.state.formErrors.notes
+            //                         )}`}
+            //                     />
+            //                     <span className="validity" />
+            //                 </label>
+            //                 <label htmlFor="messsage">
+            //                     Message
+            //                     <input
+            //                         type="text"
+            //                         id="messsage"
+            //                         name="messsage"
+            //                         placeholder="Message"
+            //                         value={this.state.messsage}
+            //                         onChange={this.handleChange}
+            //                         className={`${this.errorClass(
+            //                             this.state.formErrors.messsage
+            //                         )}`}
+            //                     />
+            //                     <span className="validity" />
+            //                 </label>
+            //                 <label htmlFor="messsageTitle">
+            //                     Message Title
+            //                     <input
+            //                         type="text"
+            //                         id="messsageTitle"
+            //                         name="messsageTitle"
+            //                         placeholder="Message Title"
+            //                         value={this.state.messsageTitle}
+            //                         onChange={this.handleChange}
+            //                         className={`${this.errorClass(
+            //                             this.state.formErrors.messsageTitle
+            //                         )}`}
+            //                     />
+            //                     <span className="validity" />
+            //                 </label>
+            //                 <label htmlFor="messsageShortened">
+            //                     Message Shortened
+            //                     <input
+            //                         type="text"
+            //                         id="messsageShortened"
+            //                         name="messsageShortened"
+            //                         placeholder="Message Shortened"
+            //                         value={this.state.messsageShortened}
+            //                         onChange={this.handleChange}
+            //                         className={`${this.errorClass(
+            //                             this.state.formErrors.messsageShortened
+            //                         )}`}
+            //                     />
+            //                     <span className="validity" />
+            //                 </label>
+            //             </fieldset>
+            //             <button type="submit" disabled={!this.state.formValid}>
+            //                 Save Lead
+            //             </button>
+            //         </Form>
+            //     )}
+            // </Mutation>
         )
     }
 }

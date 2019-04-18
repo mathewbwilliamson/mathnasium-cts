@@ -2,6 +2,7 @@
 // 1. 
 
 const Mutation = {
+    // Lead Mutations
     async createLead(parent, args, ctx, info) {
         // TODO: Check if they are logged in
         // context is defined in createServer
@@ -14,6 +15,20 @@ const Mutation = {
         }, info)
 
         return lead
+    },
+
+    async updateLead(parent, args, ctx, info) {
+        // first take a copy of the updates
+        const updates = {...args}
+        // remove the ID from the updates
+        delete updates.id
+        // run the update method
+        return ctx.db.mutation.updateLead({
+            data: updates, // data that it's looking at updating
+            where: { // Where the data is found
+                id: args.id,
+            }
+        }, info) // This is what the query returns
     },
 
     async createLeadChild(parent, args, ctx, info) {
@@ -30,6 +45,8 @@ const Mutation = {
         return leadChild
     },
 
+    
+    //Event Mutations
     async createEvent(parent, args, ctx, info) {
         // TODO: Check if they are logged in
         // context is defined in createServer

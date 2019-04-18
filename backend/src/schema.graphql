@@ -36,9 +36,9 @@ type Mutation {
 
     updateLead(
       id:ID!,
-      firstName: String!
+      firstName: String
       lastName: String
-      mobilePhoneNumber: String!
+      mobilePhoneNumber: String
       homePhoneNumber: String
       emailAddress: String
       notes: String,
