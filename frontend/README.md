@@ -17,6 +17,7 @@ frontend
 -   DONE Fix Today list and Future list so that all calls go in the calls area, texts in the texts area, etc.
 -   DONE Make a better spot for the Hamburger Menu Icon. Hamburger Menu is done.
 -   DONE Fix the Desktop hamburger menu location
+-   DONE Edit a Lead Functionality
 
 -   Need to choose a typeface
 -   Menu bottom highlight: Choose a better color
@@ -27,5 +28,4 @@ frontend
 -   Create Enter Event page (Started, need to get it running with validation)
 -   Think more about what you need a new Event to have as a required field. Type, DueDate, message, messageTitle, lead (once you figure that out)
 -   Need to figure out dates to finish Today list in GraphQL
--   Edit a Lead Functionality (Page is done, need to finish video 19 starting at 16:00)
--   Edit an Event Functionality
+-   Edit an Event Functionality (Started but need to finish Create Event Page)

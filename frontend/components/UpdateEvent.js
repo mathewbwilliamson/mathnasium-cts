@@ -7,68 +7,72 @@ import FormErrors from './FormErrors'
 import Error from './ErrorMessage'
 import Router from 'next/router'
 
-const UPDATE_LEAD_MUTATION = gql`
-    mutation UPDATE_LEAD_MUTATION(
+const UPDATE_EVENT_MUTATION = gql`
+    mutation UPDATE_EVENT_MUTATION(
         $id: ID!
-        $firstName: String
-        $lastName: String
-        $mobilePhoneNumber: String
-        $homePhoneNumber: String
-        $emailAddress: String
+        $type: String
+        $dueDate: DateTime
+        $dueTime: DateTime
         $notes: String
+        $message: String
+        $messageTitle: String
+        $messageShortened: String
     ) {
-        updateLead(
-            id: $id
-            firstName: $firstName
-            lastName: $lastName
-            mobilePhoneNumber: $mobilePhoneNumber
-            homePhoneNumber: $homePhoneNumber
-            emailAddress: $emailAddress
+        updateEvent(
+            type: $type
+            dueDate: $dueDate
+            dueTime: $dueTime
             notes: $notes
+            message: $message
+            messageTitle: $messageTitle
+            messageShortened: $messageShortened
         ) {
-            id
-            firstName
-            lastName
-            mobilePhoneNumber
-            homePhoneNumber
-            emailAddress
+            type
+            dueDate
+            dueTime
             notes
+            message
+            messageTitle
+            messageShortened
         }
     }
 `
 
-const SINGLE_LEAD_QUERY = gql`
-    query SINGLE_LEAD_QUERY($id: ID!) {
-        lead(where: { id: $id }) {
+const SINGLE_EVENT_QUERY = gql`
+    query SINGLE_EVENT_QUERY($id: ID!) {
+        event(where: { id: $id }) {
             id
-            firstName
-            lastName
-            mobilePhoneNumber
-            homePhoneNumber
-            emailAddress
+            type
+            dueDate
+            dueTime
             notes
+            message
+            messageTitle
+            messageShortened
         }
     }
 `
 
-class UpdateLead extends React.Component {
+class UpdateEvent extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            // firstName: '',
-            // lastName: '',
-            // mobilePhoneNumber: '',
-            // homePhoneNumber: '',
-            // emailAddress: '',
+            // type: '',
+            // dueDate: '',
+            // dueTime: '',
             // notes: '',
+            // message: '',
+            // messageTitle: '',
+            // messageShortened: '',
             formErrors: {
-                firstName: '',
-                lastName: '',
-                mobilePhoneNumber: '',
-                homePhoneNumber: '',
-                emailAddress: '',
+                type: '',
+                dueDate: '',
+                dueTime: '',
                 notes: '',
+                message: '',
+                messageTitle: '',
+                messageShortened: '',
             },
             emailAddressValid: true,
             mobilePhoneNumberValid: false,
@@ -183,7 +187,7 @@ class UpdateLead extends React.Component {
     render() {
         return (
             <Query
-                query={SINGLE_LEAD_QUERY}
+                query={SINGLE_EVENT_QUERY}
                 variables={{
                     id: this.props.id,
                 }}
@@ -194,7 +198,7 @@ class UpdateLead extends React.Component {
                         return <p>No Lead found for ID {this.props.id}</p>
                     return (
                         <Mutation
-                            mutation={UPDATE_LEAD_MUTATION}
+                            mutation={UPDATE_EVENT_MUTATION}
                             variables={this.state}
                         >
                             {(updateLead, { loading, error }) => (
@@ -342,5 +346,5 @@ class UpdateLead extends React.Component {
     }
 }
 
-export default UpdateLead
-export { UPDATE_LEAD_MUTATION }
+export default UpdateEvent
+export { UPDATE_EVENT_MUTATION }

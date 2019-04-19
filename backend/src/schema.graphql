@@ -32,18 +32,30 @@ type Mutation {
     sentDate: DateTime,
     sentTime: DateTime): Event!
 
-    deleteEvent(id: ID!): Event
+  updateEvent(
+    id: ID!,
+    type: String,
+    dueDate: DateTime,
+    dueTime: DateTime,
+    notes: String,
+    message: String,
+    messageTitle: String,
+    messageShortened: String,
+    sentDate: DateTime,
+    sentTime: DateTime
+    ): Event
 
-    updateLead(
-      id:ID!,
-      firstName: String
-      lastName: String
-      mobilePhoneNumber: String
-      homePhoneNumber: String
-      emailAddress: String
-      notes: String,
-      where: LeadWhereUniqueInput!
-    ): Lead!
+  deleteEvent(id: ID!): Event
+
+  updateLead(
+    id:ID!,
+    firstName: String
+    lastName: String
+    mobilePhoneNumber: String
+    homePhoneNumber: String
+    emailAddress: String
+    notes: String,
+  ): Lead!
 }
 
 type Query {
