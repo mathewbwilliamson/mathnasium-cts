@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Logo = styled.div`
   /* .logoIcon {
@@ -37,9 +37,10 @@ const Logo = styled.div`
   } */
 
   .logoLabel {
-    text-transform: uppercase;
-    transform: skew(-12deg);
+    /* text-transform: uppercase;
+    transform: skew(-12deg); */
     padding-bottom: 20px;
+    font-size: 24px;
   }
 
   .logoContainer {
@@ -52,6 +53,6 @@ const Logo = styled.div`
   .isvg.loaded {
     margin-right: -258px;
   }
-`;
+`
 
-export default Logo;
+export default Logo

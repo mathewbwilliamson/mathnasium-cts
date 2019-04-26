@@ -33,7 +33,7 @@ const Form = styled.form`
         border: 1px solid black;
         &:focus {
             outline: 0;
-            border-color: ${props => props.theme.maingreen};
+            border-color: ${props => props.theme.primaryVariantLight};
         }
     }
     label div {
@@ -57,8 +57,8 @@ const Form = styled.form`
     button,
     input[type='submit'] {
         width: auto;
-        background: ${props => props.theme.darkgreen};
-        color: ${props => props.theme.white};
+        background: ${props => props.theme.primary};
+        color: ${props => props.theme.onPrimary};
         border: 0;
         font-size: 2rem;
         font-weight: 600;
@@ -81,9 +81,9 @@ const Form = styled.form`
             display: block;
             background-image: linear-gradient(
                 to right,
-                ${props => props.theme.maingreen} 0%,
-                ${props => props.theme.darkgreen} 50%,
-                ${props => props.theme.maingreen} 100%
+                ${props => props.theme.primaryVariantLight} 0%,
+                ${props => props.theme.primaryVariantDark} 50%,
+                ${props => props.theme.primaryVariantLight} 100%
             );
         }
         &[aria-busy='true']::before {

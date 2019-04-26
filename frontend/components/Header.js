@@ -21,8 +21,8 @@ Router.onRouteChangeError = () => {
 const StyledHeader = styled.header`
   background-image: linear-gradient(
     65deg,
-    ${props => props.theme.darkgreen},
-    ${props => props.theme.maingreen}
+    ${props => props.theme.primaryVariantDark},
+    ${props => props.theme.primary}
   );
   .bar {
     /* border-bottom: 5px solid ${props => props.theme.black}; */
@@ -30,7 +30,7 @@ const StyledHeader = styled.header`
     grid-template-columns: auto 1fr;
     justify-content: space-between;
     align-items: stretch;
-    color: ${props => props.theme.lightgrey};
+    color: ${props => props.theme.onPrimary};
     @media (max-width: 1300px) {
       grid-template-columns: 1fr;
       justify-content: center;
@@ -39,10 +39,10 @@ const StyledHeader = styled.header`
   .sub-bar {
     display: grid;
     grid-template-columns: 1fr auto;
-    border-bottom: 5px solid ${props => props.theme.lightgrey};
+    border-bottom: 5px solid ${props => props.theme.background};
   }
   ul a {
-    color: ${props => props.theme.offwhite};
+    color: ${props => props.theme.onPrimary};
   }
   .topContainer {
     display: flex;
@@ -51,13 +51,16 @@ const StyledHeader = styled.header`
     justify-content: space-between;
     margin-top: 10px;
   }
+
   .hamburgerMenuContainer {
     margin-right: 10px;
-    color: ${props => props.theme.black};
+    color: ${props => props.theme.secondary};
   }
+
   .logoContainer {
     margin-left: 10px;
   }
+
   .postHeader {
     height: 20vh;
   }
@@ -81,9 +84,7 @@ const Header = () => {
                         <Logo>
                             <div className="logoContainer">
                                 <PenroseLogo />
-                                <div className="logoLabel">
-                                    Close That Sale!
-                                </div>
+                                <div className="logoLabel">Close That Sale</div>
                             </div>
                         </Logo>
                     </div>

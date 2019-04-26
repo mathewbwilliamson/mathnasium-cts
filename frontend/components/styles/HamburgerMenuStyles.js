@@ -7,13 +7,13 @@ const HamburgerMenuStyles = styled.div`
         /* Our sidebar item styling */
         text-decoration: none;
         margin-bottom: 10px;
-        color: ${props => props.theme.offwhite};
+        color: ${props => props.theme.onSurface};
         transition: color 0.2s;
     }
 
     /* Change color on hover */
     a:hover {
-        color: ${props => props.theme.purple};
+        color: ${props => props.theme.secondary};
         transition: color 0.2s;
     }
 
@@ -23,14 +23,17 @@ const HamburgerMenuStyles = styled.div`
     .bm-burger-button {
         position: fixed;
         width: 36px;
-        height: 30px;
-        right: 12px;
-        top: 14px;
+        height: 27px;
+        right: 30px;
+        top: 20px;
     }
 
     /* Color/shape of burger icon bars */
     .bm-burger-bars {
-        background: #373a47;
+        /* // [matt]: Add theme */
+        background: ${props => props.theme.onPrimary};
+        height: 15% !important;
+        width: 90% !important;
     }
 
     /* Position and sizing of clickable cross button */
@@ -41,24 +44,25 @@ const HamburgerMenuStyles = styled.div`
 
     /* Color/shape of close button cross */
     .bm-cross {
-        background: #bdc3c7;
+        background: ${props => props.theme.onSurface};
     }
 
     /* General sidebar styles */
     .bm-menu {
-        background: #373a47;
+        background: ${props => props.theme.background};
         padding: 2.5em 1.5em 0;
         font-size: 1.15em;
     }
 
     /* Morph shape necessary with bubble or elastic */
     .bm-morph-shape {
-        fill: #373a47;
+        fill: ${props => props.theme.secondary};
     }
 
     /* Wrapper for item list */
     .bm-item-list {
-        color: #b8b7ad;
+        /* // [matt]: Add theme */
+        color: ${props => props.theme.onSurface};
     }
 
     /* Styling of overlay */

@@ -68,6 +68,11 @@ class HamburgerMenu extends React.Component {
                             New Event
                         </a>
                     </Link>
+                    <Link href="/signup">
+                        <a onClick={this.closeMenu} className="menu-item">
+                            Signup
+                        </a>
+                    </Link>
                 </Menu>
             </HamburgerMenuStyles>
         )

@@ -1,5 +1,5 @@
-# source: https://us1.prisma.sh/matt-b5f417/mathnasiumCTSmain/dev
-# timestamp: Wed Apr 10 2019 08:22:48 GMT-0400 (EDT)
+# source: https://us1.prisma.sh/matt-b5f417/mathnasiumCTS/dev
+# timestamp: Tue Apr 23 2019 08:27:17 GMT-0400 (EDT)
 
 type AggregateEvent {
   count: Int!
@@ -33,9 +33,11 @@ type Event implements Node {
   message: String
   messageTitle: String
   messageShortened: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sentDate: DateTime
   sentTime: DateTime
-  lead: Lead
+  lead: Lead!
 }
 
 """A connection to a list of items."""
@@ -59,7 +61,7 @@ input EventCreateInput {
   messageShortened: String
   sentDate: DateTime
   sentTime: DateTime
-  lead: LeadCreateOneInput
+  lead: LeadCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -88,14 +90,14 @@ enum EventOrderByInput {
   messageTitle_DESC
   messageShortened_ASC
   messageShortened_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
   sentDate_ASC
   sentDate_DESC
   sentTime_ASC
   sentTime_DESC
-  updatedAt_ASC
-  updatedAt_DESC
-  createdAt_ASC
-  createdAt_DESC
 }
 
 type EventPreviousValues {
@@ -107,6 +109,8 @@ type EventPreviousValues {
   message: String
   messageTitle: String
   messageShortened: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
   sentDate: DateTime
   sentTime: DateTime
 }
@@ -160,7 +164,7 @@ input EventUpdateInput {
   messageShortened: String
   sentDate: DateTime
   sentTime: DateTime
-  lead: LeadUpdateOneInput
+  lead: LeadUpdateOneRequiredInput
 }
 
 input EventUpdateManyMutationInput {
@@ -468,6 +472,50 @@ input EventWhereInput {
 
   """All values not ending with the given string."""
   messageShortened_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
   sentDate: DateTime
 
   """All values that are not equal to given value."""
@@ -527,6 +575,8 @@ type Lead implements Node {
   homePhoneNumber: String
   emailAddress: String
   notes: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type LeadChild implements Node {
@@ -536,6 +586,8 @@ type LeadChild implements Node {
   gradeOfChild: Int
   notes: String
   conversionDate: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -579,10 +631,10 @@ enum LeadChildOrderByInput {
   notes_DESC
   conversionDate_ASC
   conversionDate_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type LeadChildPreviousValues {
@@ -592,6 +644,8 @@ type LeadChildPreviousValues {
   gradeOfChild: Int
   notes: String
   conversionDate: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type LeadChildSubscriptionPayload {
@@ -862,6 +916,50 @@ input LeadChildWhereInput {
 
   """All values greater than or equal the given value."""
   conversionDate_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input LeadChildWhereUniqueInput {
@@ -917,10 +1015,10 @@ enum LeadOrderByInput {
   emailAddress_DESC
   notes_ASC
   notes_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type LeadPreviousValues {
@@ -931,6 +1029,8 @@ type LeadPreviousValues {
   homePhoneNumber: String
   emailAddress: String
   notes: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type LeadSubscriptionPayload {
@@ -999,11 +1099,9 @@ input LeadUpdateManyMutationInput {
   notes: String
 }
 
-input LeadUpdateOneInput {
+input LeadUpdateOneRequiredInput {
   create: LeadCreateInput
   connect: LeadWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
   update: LeadUpdateDataInput
   upsert: LeadUpsertNestedInput
 }
@@ -1302,6 +1400,50 @@ input LeadWhereInput {
 
   """All values not ending with the given string."""
   notes_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input LeadWhereUniqueInput {
@@ -1368,6 +1510,16 @@ type PageInfo {
   endCursor: String
 }
 
+enum Permission {
+  ADMIN
+  USER
+  CENTERDIRECTOR
+  LEADCREATE
+  LEADUPDATE
+  LEADDELETE
+  PERMISSIONUPDATE
+}
+
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   leadChildren(where: LeadChildWhereInput, orderBy: LeadChildOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [LeadChild]!
@@ -1400,6 +1552,12 @@ type User implements Node {
   id: ID!
   name: String!
   email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  permissions: [Permission!]!
 }
 
 """A connection to a list of items."""
@@ -1416,6 +1574,14 @@ input UserCreateInput {
   id: ID
   name: String!
   email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
 }
 
 """An edge in a connection."""
@@ -1434,16 +1600,28 @@ enum UserOrderByInput {
   name_DESC
   email_ASC
   email_DESC
-  updatedAt_ASC
-  updatedAt_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type UserPreviousValues {
   id: ID!
   name: String!
   email: String!
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  permissions: [Permission!]!
 }
 
 type UserSubscriptionPayload {
@@ -1488,11 +1666,23 @@ input UserSubscriptionWhereInput {
 input UserUpdateInput {
   name: String
   email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
 }
 
 input UserUpdateManyMutationInput {
   name: String
   email: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
 }
 
 input UserWhereInput {
@@ -1624,8 +1814,155 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  password: String
+
+  """All values that are not equal to given value."""
+  password_not: String
+
+  """All values that are contained in given list."""
+  password_in: [String!]
+
+  """All values that are not contained in given list."""
+  password_not_in: [String!]
+
+  """All values less than the given value."""
+  password_lt: String
+
+  """All values less than or equal the given value."""
+  password_lte: String
+
+  """All values greater than the given value."""
+  password_gt: String
+
+  """All values greater than or equal the given value."""
+  password_gte: String
+
+  """All values containing the given string."""
+  password_contains: String
+
+  """All values not containing the given string."""
+  password_not_contains: String
+
+  """All values starting with the given string."""
+  password_starts_with: String
+
+  """All values not starting with the given string."""
+  password_not_starts_with: String
+
+  """All values ending with the given string."""
+  password_ends_with: String
+
+  """All values not ending with the given string."""
+  password_not_ends_with: String
+  resetToken: String
+
+  """All values that are not equal to given value."""
+  resetToken_not: String
+
+  """All values that are contained in given list."""
+  resetToken_in: [String!]
+
+  """All values that are not contained in given list."""
+  resetToken_not_in: [String!]
+
+  """All values less than the given value."""
+  resetToken_lt: String
+
+  """All values less than or equal the given value."""
+  resetToken_lte: String
+
+  """All values greater than the given value."""
+  resetToken_gt: String
+
+  """All values greater than or equal the given value."""
+  resetToken_gte: String
+
+  """All values containing the given string."""
+  resetToken_contains: String
+
+  """All values not containing the given string."""
+  resetToken_not_contains: String
+
+  """All values starting with the given string."""
+  resetToken_starts_with: String
+
+  """All values not starting with the given string."""
+  resetToken_not_starts_with: String
+
+  """All values ending with the given string."""
+  resetToken_ends_with: String
+
+  """All values not ending with the given string."""
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+
+  """All values that are not equal to given value."""
+  resetTokenExpiry_not: Float
+
+  """All values that are contained in given list."""
+  resetTokenExpiry_in: [Float!]
+
+  """All values that are not contained in given list."""
+  resetTokenExpiry_not_in: [Float!]
+
+  """All values less than the given value."""
+  resetTokenExpiry_lt: Float
+
+  """All values less than or equal the given value."""
+  resetTokenExpiry_lte: Float
+
+  """All values greater than the given value."""
+  resetTokenExpiry_gt: Float
+
+  """All values greater than or equal the given value."""
+  resetTokenExpiry_gte: Float
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input UserWhereUniqueInput {
   id: ID
+  email: String
 }

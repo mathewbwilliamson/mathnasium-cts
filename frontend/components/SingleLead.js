@@ -10,7 +10,7 @@ import IndividualLead from './IndividualLead'
 const SingleItemStyles = styled.div`
     max-width: 1200px;
     margin: 2rem auto;
-    box-shadow: ${props => props.theme.bs};
+    box-shadow: ${props => props.theme.boxShadow};
     display: grid;
     grid-auto-columns: 1fr;
     grid-auto-flow: column;

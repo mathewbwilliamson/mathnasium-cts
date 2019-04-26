@@ -1,7 +1,33 @@
-// Procedure to Add a Mutation or Query
-// 1. 
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const Mutation = {
+    // User Mutations
+    async signup(parent, args, ctx, info) {
+        args.email = args.email.toLowerCase()
+        //hash their password
+        const password = await bcrypt.hash(args.password, 10)
+        // Create the user in the database
+        const user = await ctx.db.mutation.createUser({
+            data: {
+                ...args,
+                password,
+                permissions: { set: ['USER'] }
+            }
+        }, info)
+        // Create the JWT token for them so they can stay logged in
+        const token = jwt.sign({ userid: user.id }, process.env.APP_SECRET)
+        console.log('[matt] token', token)
+        
+        // We set the jwt as a cookie on the response
+        ctx.response.cookie('token', token, {
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year cookie
+        })
+        // Finally we return the user to the browser
+        return user
+    },
+    
     // Lead Mutations
     async createLead(parent, args, ctx, info) {
         // TODO: Check if they are logged in

@@ -5,6 +5,8 @@
 
 type Mutation {
   # Note that Lead is defined in prisma.graphql!
+  signup(email:String!, password: String!, name: String!): User!
+  
   createLead(
     firstName: String!,
     lastName: String, 

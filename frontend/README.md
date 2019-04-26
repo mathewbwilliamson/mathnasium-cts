@@ -18,9 +18,12 @@ frontend
 -   DONE Make a better spot for the Hamburger Menu Icon. Hamburger Menu is done.
 -   DONE Fix the Desktop hamburger menu location
 -   DONE Edit a Lead Functionality
+-   DONE Need to choose a typeface
+-   DONE Menu bottom highlight: Choose a better color
+-   DONE Redo and make the theme styles more robust
+-   DONE Backend: Create User
+-   DONE Backend: Fix up database to most recent version of Prisma
 
--   Need to choose a typeface
--   Menu bottom highlight: Choose a better color
 -   Check Prisma Server to make sure it's production-ready (backend)
 -   Uncomment secret in prisma.yml (Backend)
 -   Need to figure how to delete an Event
@@ -29,3 +32,6 @@ frontend
 -   Think more about what you need a new Event to have as a required field. Type, DueDate, message, messageTitle, lead (once you figure that out)
 -   Need to figure out dates to finish Today list in GraphQL
 -   Edit an Event Functionality (Started but need to finish Create Event Page)
+-   Style the Option and Select boxes on the CreateEvent.
+-   Frontend: Create user
+-   Figure out what permissions we will have for users

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const NavStyles = styled.ul`
   margin: 0;
@@ -27,8 +27,8 @@ const NavStyles = styled.ul`
     border: 0;
     cursor: pointer;
     @media (max-width: 700px) {
-      font-size: 10px;
-      padding: 0 10px;
+      font-size: 17px;
+      padding: 0 15px;
     }
     &:before {
       content: "";
@@ -41,9 +41,10 @@ const NavStyles = styled.ul`
       top: 0;
       bottom: 0;
     }
+    /* This is the line under the button on hover */
     &:after {
-      height: 2px;
-      background: ${props => props.theme.purple};
+      height: 3px;
+      background: ${props => props.theme.primaryVariantLight};
       content: "";
       width: 0;
       position: absolute;
@@ -51,9 +52,8 @@ const NavStyles = styled.ul`
       transition: width 0.4s;
       transition-timing-function: cubic-bezier(1, -0.65, 0, 2.31);
       left: 50%;
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       @media (max-width: 700px) {
-        /* [MATT] TODO: Fix this on mobile. It looks shitty! */
         margin-top: 1.3rem;
       }
     }
@@ -78,6 +78,6 @@ const NavStyles = styled.ul`
     justify-content: center;
     font-size: 1.5rem;
   }
-`;
+`
 
-export default NavStyles;
+export default NavStyles
