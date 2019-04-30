@@ -33,5 +33,7 @@ frontend
 -   Need to figure out dates to finish Today list in GraphQL
 -   Edit an Event Functionality (Started but need to finish Create Event Page)
 -   Style the Option and Select boxes on the CreateEvent.
--   Frontend: Create user
+-   DONE Frontend: Create user
 -   Figure out what permissions we will have for users
+-   Create validation for Signup form
+-   Create validation for Signin form

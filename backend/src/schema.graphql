@@ -6,6 +6,7 @@
 type Mutation {
   # Note that Lead is defined in prisma.graphql!
   signup(email:String!, password: String!, name: String!): User!
+  signin(email: String!, password: String!): User!
   
   createLead(
     firstName: String!,
@@ -66,4 +67,5 @@ type Query {
   leadChildren: [LeadChild]!
   events(where: EventWhereInput): [Event]!
   event(where: EventWhereUniqueInput!): Event
+  me: User
 }
