@@ -1,12 +1,15 @@
 # The next line is not really commented out. It's prisma's way of creating an import.
 # import * from './generated/prisma.graphql'
 
-
+type SuccessMessage {
+  message: String
+}
 
 type Mutation {
   # Note that Lead is defined in prisma.graphql!
   signup(email:String!, password: String!, name: String!): User!
   signin(email: String!, password: String!): User!
+  signout: SuccessMessage!
   
   createLead(
     firstName: String!,

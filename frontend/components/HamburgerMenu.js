@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { slide as Menu } from 'react-burger-menu'
 import HamburgerMenuStyles from './styles/HamburgerMenuStyles'
+import User from './User'
+import Signout from './Signout'
 
 class HamburgerMenu extends React.Component {
     constructor(props) {
@@ -38,41 +40,75 @@ class HamburgerMenu extends React.Component {
                     isOpen={this.state.menuOpen}
                     onStateChange={state => this.handleStateChange(state)}
                 >
-                    <Link href="/">
-                        <a onClick={this.closeMenu} className="menu-item">
-                            Home
-                        </a>
-                    </Link>
-                    <Link href="/today">
-                        <a onClick={this.closeMenu} className="menu-item">
-                            Today
-                        </a>
-                    </Link>
-                    <Link href="/newLead">
-                        <a onClick={this.closeMenu} className="menu-item">
-                            New Lead
-                        </a>
-                    </Link>
-                    <Link href="/future">
-                        <a onClick={this.closeMenu} className="menu-item">
-                            Future
-                        </a>
-                    </Link>
-                    <Link href="/leadsList">
-                        <a onClick={this.closeMenu} className="menu-item">
-                            Leads List
-                        </a>
-                    </Link>
-                    <Link href="/newEvent">
-                        <a onClick={this.closeMenu} className="menu-item">
-                            New Event
-                        </a>
-                    </Link>
-                    <Link href="/signup">
-                        <a onClick={this.closeMenu} className="menu-item">
-                            Signup
-                        </a>
-                    </Link>
+                    <User>
+                        {({ data: { me } }) => (
+                            <React.Fragment>
+                                <Link href="/">
+                                    <a
+                                        onClick={this.closeMenu}
+                                        className="menu-item"
+                                    >
+                                        Home
+                                    </a>
+                                </Link>
+                                {me && (
+                                    <React.Fragment>
+                                        <Link href="/today">
+                                            <a
+                                                onClick={this.closeMenu}
+                                                className="menu-item"
+                                            >
+                                                Today
+                                            </a>
+                                        </Link>
+                                        <Link href="/newLead">
+                                            <a
+                                                onClick={this.closeMenu}
+                                                className="menu-item"
+                                            >
+                                                New Lead
+                                            </a>
+                                        </Link>
+                                        <Link href="/future">
+                                            <a
+                                                onClick={this.closeMenu}
+                                                className="menu-item"
+                                            >
+                                                Future
+                                            </a>
+                                        </Link>
+                                        <Link href="/leadsList">
+                                            <a
+                                                onClick={this.closeMenu}
+                                                className="menu-item"
+                                            >
+                                                Leads List
+                                            </a>
+                                        </Link>
+                                        <Link href="/newEvent">
+                                            <a
+                                                onClick={this.closeMenu}
+                                                className="menu-item"
+                                            >
+                                                New Event
+                                            </a>
+                                        </Link>
+                                        <Signout />
+                                    </React.Fragment>
+                                )}
+                                {!me && (
+                                    <Link href="/signup">
+                                        <a
+                                            onClick={this.closeMenu}
+                                            className="menu-item"
+                                        >
+                                            Sign In / Sign Up
+                                        </a>
+                                    </Link>
+                                )}
+                            </React.Fragment>
+                        )}
+                    </User>
                 </Menu>
             </HamburgerMenuStyles>
         )

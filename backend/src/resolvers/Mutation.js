@@ -48,6 +48,11 @@ const Mutation = {
         // 5. Return the user
         return user
     },
+
+    signout(parent, args, ctx, info) {
+        ctx.response.clearCookie('token')
+        return { message: 'Goodbye!'}
+    },
     
     // Lead Mutations
     async createLead(parent, args, ctx, info) {

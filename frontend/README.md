@@ -37,3 +37,4 @@ frontend
 -   Figure out what permissions we will have for users
 -   Create validation for Signup form
 -   Create validation for Signin form
+-   Change styles of signout button to the link
