@@ -11,6 +11,7 @@ type Mutation {
   signin(email: String!, password: String!): User!
   signout: SuccessMessage!
   requestReset(email:String): SuccessMessage
+  resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
   
   createLead(
     firstName: String!,
@@ -72,6 +73,7 @@ type Query {
   events(where: EventWhereInput): [Event]!
   event(where: EventWhereUniqueInput!): Event
   me: User
+  users: [User]!
 }
 
 # We need to redefine User because it is a security issue to have resetToken on a frontend exposed User

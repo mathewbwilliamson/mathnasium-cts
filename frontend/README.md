@@ -38,3 +38,4 @@ frontend
 -   Create validation for Signup form
 -   Create validation for Signin form
 -   Change styles of signout button to the link
+-   Reset Component: Make sure that when someone resets their password and it's successful, to route them to the main page.
