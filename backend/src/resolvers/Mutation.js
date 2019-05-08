@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { randomBytes } = require('crypto')
 const { promisify } = require('util')
+const { transport, makeANiceEmail } = require('../mail')
 
 const Mutation = {
     // User Mutations
@@ -70,10 +71,20 @@ const Mutation = {
             where: { email: args.email },
             data: { resetToken, resetTokenExpiry}
         })
-        console.log('[matt] response', res)
-        return { message: 'Thanks!' }
         
         // 3. Email them that reset token
+        const mailRes = await transport.sendMail({
+            from: 'slidergs@gmail.com',
+            to: user.email,
+            subject: 'Your Password Reset Email',
+            html: makeANiceEmail(`Your password reset token is here!
+                \n\n
+                <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">
+                Click Here to Reset</a>
+            `)
+        })
+
+        return { message: 'Thanks!' }
     },
 
     async resetPassword(parent, args, ctx, info) {
@@ -122,11 +133,20 @@ const Mutation = {
     // Lead Mutations
     async createLead(parent, args, ctx, info) {
         // TODO: Check if they are logged in
+        if(!ctx.request.userId) {
+            throw new Error('You must be logged in to do that!')
+        }
         // context is defined in createServer
         // Because of context, the primsa server is exposed to us from prisma.graphql
         // Look up "type Mutation" in prisma.graphql
         const lead = await ctx.db.mutation.createLead({
             data: {
+                // [Note] this is how we create a relationship between the Lead and the User
+                user: {
+                    connect: {
+                        id: ctx.request.userId
+                    }
+                },
                 ...args
             }
         }, info)

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Mutation, Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import Router from 'next/router'
 import Form from './styles/Form'
 import Error from './ErrorMessage'
 import { CURRENT_USER_QUERY } from './User'

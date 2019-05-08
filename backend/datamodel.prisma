@@ -35,6 +35,7 @@ type Lead {
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
   # events: [Events]
+  user: User!
 }
 
 type LeadChild {

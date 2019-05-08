@@ -4,7 +4,7 @@ frontend
 
 # Video List
 
--   Finished videos 1 - 17
+-   Finished videos 1 - 32
 
 # Todo
 
@@ -23,6 +23,8 @@ frontend
 -   DONE Redo and make the theme styles more robust
 -   DONE Backend: Create User
 -   DONE Backend: Fix up database to most recent version of Prisma
+-   DONE Add PleaseSignIn wrapper to ALL pages that need a signin before using them (ie, all of them)
+-   DONE Frontend: Create user
 
 -   Check Prisma Server to make sure it's production-ready (backend)
 -   Uncomment secret in prisma.yml (Backend)
@@ -33,9 +35,11 @@ frontend
 -   Need to figure out dates to finish Today list in GraphQL
 -   Edit an Event Functionality (Started but need to finish Create Event Page)
 -   Style the Option and Select boxes on the CreateEvent.
--   DONE Frontend: Create user
 -   Figure out what permissions we will have for users
 -   Create validation for Signup form
 -   Create validation for Signin form
 -   Change styles of signout button to the link
 -   Reset Component: Make sure that when someone resets their password and it's successful, to route them to the main page.
+-   For email services, he likes Postmark and SendGrid. I was going to use SendGrid, but Postmark would be worth looking into.
+-   Reset Password Page: When it resets, Add a confirmation then route to the main page. At the very least, clear both the input fields. Use Router.replace('/')
+-   Setup all the various Lead to User, Event to Lead, Event to User, etc relationships on the backend

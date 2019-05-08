@@ -1,3 +1,4 @@
+import Router from 'next/router'
 import BasicPageStyles from '../components/styles/BasicPageStyles'
 import Signup from '../components/Signup'
 import Signin from '../components/Signin'
@@ -12,6 +13,8 @@ const Columns = styled.div`
 `
 
 const SignupPage = props => {
+    // [matt]: When we arrive at this page and we are already logged in, redirect to another page?
+    // Router.replace('/')
     return (
         <BasicPageStyles>
             <Columns className="container">
