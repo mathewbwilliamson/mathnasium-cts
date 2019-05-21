@@ -2,14 +2,14 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: 'variables.env'})
 const createServer = require('./createServer')
 const db = require('./db')
-const jwt = require('jsonwebtoken');
-
+const jwt = require('jsonwebtoken')
+const MessagingResponse = require('twilio').twiml.MessagingResponse
+const bodyParser = require('body-parser')
+const { sendATextMessage } = require('./sms/sendSms')
 const server = createServer()
 
-// TODO Use express middleware to handle cookies JWT
 // Parses the cookie from the string into an object
 server.express.use(cookieParser())
-// TODO Use express middleware to populate current user
 
 // decode the JWT so we can get the user Id on each request
 server.express.use((req, res, next) => {
@@ -34,6 +34,48 @@ server.express.use(async (req, res, next) => {
     )
   req.user = user
   next()
+})
+
+// Must use this to access req.body in SMS call
+server.express.use(bodyParser.json());
+server.express.use(bodyParser.urlencoded({extended: false}));
+
+server.express.post('/sms', (req, res, next) => {
+  // [matt]: https://www.twilio.com/docs/sms/tutorials/how-to-receive-and-reply-node-js
+  // When a message comes in to the server, this Messaging Response sends this message in return
+  const twiml = new MessagingResponse();
+  console.log('[matt] req.body', req.body)
+  // [matt]: As we start adding phone numbers, we'll have to build a switch block or something for finding
+  // [matt]:   the TO, matching the phone number in a file, then directing the message appropriately
+
+  if (req.body.Body.toLowerCase() === 'moo') {
+    twiml.message('You are a cow!')
+  } else {
+    twiml.message('The Robots are coming! Head for the hills!');
+  }
+
+  
+  res.writeHead(200, {'Content-Type': 'text/xml'});
+  res.end(twiml.toString());
+});
+
+server.express.post('/sendsms', (req, res, next) => {
+  console.log('[matt] req before SMS', req.body)
+  
+  sendATextMessage(req.body, res, next)
+  // [matt]: Need to add better error handling. Should I return the below from sendATextMessage??
+  
+  // res.status(200).send({
+  //   success: 'true',
+  //   message: 'Text Message sent successfully'
+  //   })
+
+  next()
+});
+
+server.express.post('/', (error, req, res, next) => {
+  console.log('[matt] error', error)
+  
 })
 
 server.start({

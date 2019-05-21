@@ -27,6 +27,7 @@ frontend
 -   DONE Frontend: Create user
 -   DONE Change styling on SickButton for the Manage Permissions page.
 -   DONE Do I need the manage permissions page to be responsive?? No, I'm the only one that's going to use it.
+-   DONE Create a front end for sending a text
 
 *   Check Prisma Server to make sure it's production-ready (backend)
 *   Uncomment secret in prisma.yml (Backend)
@@ -45,4 +46,7 @@ frontend
 *   For email services, he likes Postmark and SendGrid. I was going to use SendGrid, but Postmark would be worth looking into.
 *   Reset Password Page: When it resets, Add a confirmation then route to the main page. At the very least, clear both the input fields. Use Router.replace('/')
 *   Setup all the various Lead to User, Event to Lead, Event to User, etc relationships on the backend
-*   Finish Manage Permissions page logic
+*   Finish Manage Permissions page logic via video
+*   When sending a text on SendAText, it "fails" but still sends to the server. Is it because something is wrong on my server?
+*   Look into how to create a cron job to automatically send scheduled text messages
+*   Look up how to handle endpoints and errors from my old servers from Thinkful. I think that I'm sending res headers in the wrong spot for sendATextMessage.
