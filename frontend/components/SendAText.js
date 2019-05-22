@@ -5,6 +5,7 @@ import User from './User'
 import BasicPageStyles from '../components/styles/BasicPageStyles'
 import PleaseSignIn from '../components/PleaseSignIn'
 import Form from './styles/Form'
+import Error from './ErrorMessage'
 
 // [matt]: For styling the menu, just put it on the top left before the logo so that it would be top left hamburger, Logo/Name, then below that is the links
 
@@ -17,7 +18,6 @@ class SendAText extends React.Component {
             fromPhoneNumber: '',
         }
         this.saveToState = this.saveToState.bind(this)
-        this.sendForm = this.sendForm.bind(this)
     }
 
     saveToState(e) {
@@ -25,21 +25,6 @@ class SendAText extends React.Component {
             [e.target.name]: e.target.value,
         })
         return null
-    }
-
-    sendForm(e) {
-        e.preventDefault()
-        axios
-            .post('http://localhost:4444/sendsms', {
-                message: this.state.message,
-                toPhoneNumber: this.state.toPhoneNumber,
-            })
-            .then(function(response) {
-                console.log('this is the console', response)
-            })
-            .catch(function(error) {
-                console.log(error)
-            })
     }
 
     render() {
@@ -56,20 +41,23 @@ class SendAText extends React.Component {
                                         message: this.state.message,
                                         toPhoneNumber: this.state.toPhoneNumber,
                                     })
-                                    .then(function(response) {
+                                    .then(response => {
                                         console.log(
                                             'this is the console',
                                             response
                                         )
                                     })
-                                    .catch(function(error) {
-                                        console.log(error)
+                                    .catch(err => {
+                                        this.setState({
+                                            error: 'Error with form',
+                                        })
+                                        console.log(err)
                                     })
                             }}
                         >
                             <fieldset>
                                 <h2>Send a Text</h2>
-                                {/* <Error error={error} /> */}
+                                <Error error={{ message: this.state.error }} />
                                 <label htmlFor="message">
                                     Message
                                     <input

@@ -2,11 +2,14 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: 'variables.env'})
 const createServer = require('./createServer')
 const db = require('./db')
+const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const MessagingResponse = require('twilio').twiml.MessagingResponse
 const bodyParser = require('body-parser')
-const { sendATextMessage } = require('./sms/sendSms')
+const sendATextRouter = require('./sms/sendSms')
 const server = createServer()
+
+server.express.use(cors())
 
 // Parses the cookie from the string into an object
 server.express.use(cookieParser())
@@ -59,19 +62,7 @@ server.express.post('/sms', (req, res, next) => {
   res.end(twiml.toString());
 });
 
-server.express.post('/sendsms', (req, res, next) => {
-  console.log('[matt] req before SMS', req.body)
-  
-  sendATextMessage(req.body, res, next)
-  // [matt]: Need to add better error handling. Should I return the below from sendATextMessage??
-  
-  // res.status(200).send({
-  //   success: 'true',
-  //   message: 'Text Message sent successfully'
-  //   })
-
-  next()
-});
+server.express.use('/sendsms', sendATextRouter)
 
 server.express.post('/', (error, req, res, next) => {
   console.log('[matt] error', error)
@@ -79,10 +70,7 @@ server.express.post('/', (error, req, res, next) => {
 })
 
 server.start({
-    cors: {
-        credentials: true,
-        origin: process.env.FRONTEND_URL,
-    },
+    
 }, details => {
 console.log(`Server is starting on port http://localhost:${details.port}`)
 })
