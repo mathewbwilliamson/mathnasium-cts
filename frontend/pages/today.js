@@ -8,7 +8,7 @@ import PleaseSignIn from '../components/PleaseSignIn'
 
 const TEXT_EVENTS_QUERY = gql`
     query TEXT_EVENTS_QUERY {
-        events(where: { type_contains: "text" }) {
+        events {
             id
             type
             dueDate
@@ -24,7 +24,7 @@ const TEXT_EVENTS_QUERY = gql`
 `
 const CALL_EVENTS_QUERY = gql`
     query CALL_EVENTS_QUERY {
-        events(where: { type_contains: "call" }) {
+        events {
             id
             type
             dueDate
@@ -40,7 +40,7 @@ const CALL_EVENTS_QUERY = gql`
 `
 const EMAIL_EVENTS_QUERY = gql`
     query EMAIL_EVENTS_QUERY {
-        events(where: { type_contains: "email" }) {
+        events {
             id
             type
             dueDate

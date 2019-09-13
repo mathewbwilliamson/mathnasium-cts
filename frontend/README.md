@@ -51,3 +51,4 @@ frontend
 *   Setup all the various Lead to User, Event to Lead, Event to User, etc relationships on the backend
 *   Finish Manage Permissions page logic via video
 *   Look into how to create a cron job to automatically send scheduled text messages
+*   I came back to this after a while, and now things in GraphQL are just not working. I'm about to give up on GraphQL. Ugh!

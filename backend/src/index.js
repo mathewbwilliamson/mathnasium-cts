@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const sendATextRouter = require('./sms/sendSms')
 const server = createServer()
 
-server.express.use(cors())
+// server.express.use(cors())
 
 // Parses the cookie from the string into an object
 server.express.use(cookieParser())
@@ -70,7 +70,10 @@ server.express.post('/', (error, req, res, next) => {
 })
 
 server.start({
-    
+  cors: {
+    credentials: true,
+    origin: process.env.FRONTEND_URL,
+  },
 }, details => {
 console.log(`Server is starting on port http://localhost:${details.port}`)
 })

@@ -1,7 +1,7 @@
 const { forwardTo } = require('prisma-binding')
 const { hasPermission } = require('../utils')
 
-const Query = {
+const Query = {  
     leads: forwardTo('db'),
     lead: forwardTo('db'),
     leadChildren: forwardTo('db'),

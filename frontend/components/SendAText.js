@@ -78,7 +78,7 @@ class SendAText extends React.Component {
                                         onChange={this.saveToState}
                                     />
                                 </label>
-                                <button type="submit">Sign In</button>
+                                <button type="submit">Send the Text</button>
                             </fieldset>
                         </Form>
                     </div>
